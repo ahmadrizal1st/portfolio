@@ -117,7 +117,7 @@ export default function TetrisLoading({
   );
   const [fallingPiece, setFallingPiece] = useState<FallingPiece | null>(null);
   const [isClearing, setIsClearing] = useState(false);
-  const frameRef = useRef<number>();
+  const frameRef = useRef<number | null>(null);
   const lastUpdateRef = useRef<number>(0);
 
   // Rotate a shape 90 degrees clockwise
@@ -392,7 +392,7 @@ export default function TetrisLoading({
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
+    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white flex flex-col items-center justify-center">
       <div className="mb-6">
         <div
           className={`border-2 border-gray-800 dark:border-gray-200 bg-white dark:bg-black ${config.padding} transition-colors`}

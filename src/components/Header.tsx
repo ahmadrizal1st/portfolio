@@ -3,26 +3,37 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { PageType } from "../lib/types";
 import { ThemeToggle } from "./ThemeToggle";
+import { useNavigate } from "react-router-dom";
 
 interface HeaderProps {
   currentPage: PageType;
-  onNavigate: (page: PageType) => void;
 }
 
-export function Header({ currentPage, onNavigate }: HeaderProps) {
+export function Header({ currentPage }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
-  const navItems: { label: string; page: PageType }[] = [
-    { label: "Home", page: "home" },
-    { label: "About", page: "about" },
-    { label: "Experience", page: "experience" },
-    { label: "Certifications", page: "certification" },
-    { label: "Projects", page: "project" },
-    { label: "Contact", page: "contact" },
+  const navItems: { label: string; page: PageType; path: string }[] = [
+    { label: "Home", page: "home", path: "/" },
+    { label: "About", page: "about", path: "/about" },
+    { label: "Experience", page: "experience", path: "/experience" },
+    { label: "Certifications", page: "certification", path: "/certification" },
+    { label: "Projects", page: "project", path: "/project" },
+    { label: "Contact", page: "contact", path: "/contact" },
   ];
 
   const handleNavigate = (page: PageType) => {
-    onNavigate(page);
+    const routeMap: Record<PageType, string> = {
+      splash: "/",
+      home: "/",
+      about: "/about",
+      experience: "/experience",
+      certification: "/certification",
+      project: "/project",
+      "project-detail": "/project",
+      contact: "/contact",
+    };
+    navigate(routeMap[page] || "/");
     setMobileMenuOpen(false);
   };
 
@@ -36,7 +47,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
         <div className="flex items-center justify-between">
           {/* Logo/Name */}
           <button
-            onClick={() => handleNavigate("home")}
+            onClick={() => navigate("/")}
             className="hover:opacity-70 transition-opacity"
           >
             <img
@@ -92,7 +103,10 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
             {navItems.map((item) => (
               <button
                 key={item.page}
-                onClick={() => handleNavigate(item.page)}
+                onClick={() => {
+                  navigate(item.path);
+                  setMobileMenuOpen(false);
+                }}
                 className={`block w-full text-left py-3 px-4 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors ${
                   currentPage === item.page
                     ? "bg-black dark:bg-white text-white dark:text-black"

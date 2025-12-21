@@ -1,4 +1,11 @@
 import { useState, useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import { PageType } from "../lib/types";
 import { SplashPage } from "../pages/SplashPage";
@@ -13,32 +20,59 @@ import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import TetrisLoading from "../components/ui/tetris-loader";
 
-export default function App() {
-  const [currentPage, setCurrentPage] = useState<PageType>("splash");
-  const [projectId, setProjectId] = useState<string | null>(null);
+function AppContent() {
   const [isLoading, setIsLoading] = useState(false);
   const [showSplash, setShowSplash] = useState(true);
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
+  const [_isProgrammaticNavigation, setIsProgrammaticNavigation] =
+    useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   // Check if user has visited before
   useEffect(() => {
     const hasVisited = localStorage.getItem("hasVisited");
     if (hasVisited) {
       setShowSplash(false);
-      setCurrentPage("home");
     }
   }, []);
+
+  // Handle loading on route changes
+  useEffect(() => {
+    if (!isLoading && !isFirstLoad) {
+      setIsLoading(true);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
+    }
+    if (isFirstLoad) {
+      setIsFirstLoad(false);
+    }
+  }, [location.pathname]);
 
   const handleNavigate = (page: PageType, id?: string) => {
     // Show loading for route transitions
     setIsLoading(true);
+    setIsProgrammaticNavigation(true);
 
     // Scroll to top
     window.scrollTo(0, 0);
 
     setTimeout(() => {
-      setCurrentPage(page);
-      if (id) {
-        setProjectId(id);
+      if (page === "project-detail" && id) {
+        navigate(`/project/${id}`);
+      } else {
+        const routeMap: Record<PageType, string> = {
+          splash: "/",
+          home: "/",
+          about: "/about",
+          experience: "/experience",
+          certification: "/certification",
+          project: "/project",
+          "project-detail": "/project",
+          contact: "/contact",
+        };
+        navigate(routeMap[page] || "/");
       }
       setIsLoading(false);
     }, 1000);
@@ -46,12 +80,28 @@ export default function App() {
 
   const handleSplashComplete = () => {
     setIsLoading(true);
+    setIsProgrammaticNavigation(true);
     setTimeout(() => {
       setShowSplash(false);
-      setCurrentPage("home");
+      navigate("/");
       setIsLoading(false);
     }, 2000);
   };
+
+  // Get current page from location
+  const getCurrentPage = (): PageType => {
+    const path = location.pathname;
+    if (path === "/") return "home";
+    if (path === "/about") return "about";
+    if (path === "/experience") return "experience";
+    if (path === "/certification") return "certification";
+    if (path === "/project") return "project";
+    if (path.startsWith("/project/")) return "project-detail";
+    if (path === "/contact") return "contact";
+    return "home";
+  };
+
+  const currentPage = getCurrentPage();
 
   // Show splash page
   if (showSplash) {
@@ -63,40 +113,37 @@ export default function App() {
     return <TetrisLoading />;
   }
 
-  // Render current page with layout
-  const renderPage = () => {
-    switch (currentPage) {
-      case "home":
-        return <HomePage onNavigate={handleNavigate} />;
-      case "about":
-        return <AboutPage />;
-      case "experience":
-        return <ExperiencePage />;
-      case "certification":
-        return <CertificationPage />;
-      case "project":
-        return <ProjectPage onNavigate={handleNavigate} />;
-      case "project-detail":
-        return (
-          <ProjectDetailPage
-            projectId={projectId}
-            onNavigate={handleNavigate}
+  return (
+    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white">
+      <Header currentPage={currentPage} />
+      <main>
+        <Routes>
+          <Route path="/" element={<HomePage onNavigate={handleNavigate} />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/experience" element={<ExperiencePage />} />
+          <Route path="/certification" element={<CertificationPage />} />
+          <Route
+            path="/project"
+            element={<ProjectPage onNavigate={handleNavigate} />}
           />
-        );
-      case "contact":
-        return <ContactPage />;
-      default:
-        return <HomePage onNavigate={handleNavigate} />;
-    }
-  };
+          <Route
+            path="/project/:id"
+            element={<ProjectDetailPage onNavigate={handleNavigate} />}
+          />
+          <Route path="/contact" element={<ContactPage />} />
+        </Routes>
+      </main>
+      <Footer />
+    </div>
+  );
+}
 
+export default function App() {
   return (
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-      <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white">
-        <Header currentPage={currentPage} onNavigate={handleNavigate} />
-        <main>{renderPage()}</main>
-        <Footer onNavigate={handleNavigate} />
-      </div>
+      <Router>
+        <AppContent />
+      </Router>
     </ThemeProvider>
   );
 }

@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { ArrowRight, Code, Award, Briefcase } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import {
   personalInfo,
   experiences,
@@ -14,6 +15,7 @@ interface HomePageProps {
 }
 
 export function HomePage({ onNavigate }: HomePageProps) {
+  const navigate = useNavigate();
   const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
   const latestExperiences = experiences.slice(0, 2);
   const topCertifications = certifications.slice(0, 3);
@@ -65,11 +67,11 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 transition={{ delay: 0.8, duration: 0.6 }}
                 className="flex flex-wrap gap-4"
               >
-                <Button onClick={() => onNavigate("project")} size="lg">
+                <Button onClick={() => navigate("/project")} size="lg">
                   View My Work
                 </Button>
                 <Button
-                  onClick={() => onNavigate("contact")}
+                  onClick={() => navigate("/contact")}
                   variant="outline"
                   size="lg"
                 >
@@ -103,7 +105,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
               Experience Highlights
             </h2>
             <button
-              onClick={() => onNavigate("experience")}
+              onClick={() => navigate("/experience")}
               className="flex items-center gap-2 hover:underline"
             >
               View All <ArrowRight size={18} />
@@ -218,7 +220,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
               Featured Projects
             </h2>
             <button
-              onClick={() => onNavigate("project")}
+              onClick={() => navigate("/project")}
               className="flex items-center gap-2 hover:underline"
             >
               View All <ArrowRight size={18} />
@@ -234,7 +236,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.15 }}
                 className="group cursor-pointer"
-                onClick={() => onNavigate("project-detail", project.id)}
+                onClick={() => navigate(`/project/${project.id}`)}
               >
                 <div className="border-2 border-black dark:border-white p-6 h-full hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] transition-all">
                   {project.imageUrl && (
@@ -289,7 +291,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
               opportunities and creative ideas.
             </p>
             <Button
-              onClick={() => onNavigate("contact")}
+              onClick={() => navigate("/contact")}
               variant="secondary"
               size="lg"
             >

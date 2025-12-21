@@ -1,19 +1,17 @@
 import { Github, Linkedin, Mail, ExternalLink } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { personalInfo } from "../lib/data";
 import { PageType } from "../lib/types";
 
-interface FooterProps {
-  onNavigate: (page: PageType) => void;
-}
-
-export function Footer({ onNavigate }: FooterProps) {
+export function Footer() {
+  const navigate = useNavigate();
   const currentYear = new Date().getFullYear();
 
-  const quickLinks: { label: string; page: PageType }[] = [
-    { label: "Home", page: "home" },
-    { label: "About", page: "about" },
-    { label: "Experience", page: "experience" },
-    { label: "Projects", page: "project" },
+  const quickLinks: { label: string; page: PageType; path: string }[] = [
+    { label: "Home", page: "home", path: "/" },
+    { label: "About", page: "about", path: "/about" },
+    { label: "Experience", page: "experience", path: "/experience" },
+    { label: "Projects", page: "project", path: "/project" },
   ];
 
   return (
@@ -42,7 +40,7 @@ export function Footer({ onNavigate }: FooterProps) {
               {quickLinks.map((link) => (
                 <button
                   key={link.page}
-                  onClick={() => onNavigate(link.page)}
+                  onClick={() => navigate(link.path)}
                   className="block hover:underline text-gray-700 dark:text-gray-300"
                 >
                   {link.label}

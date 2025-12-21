@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { Code, ArrowRight, Star } from "lucide-react";
 import { projects } from "../lib/data";
 import { PageType } from "../lib/types";
+import { useNavigate } from "react-router-dom";
 
 interface ProjectPageProps {
   onNavigate: (page: PageType, projectId?: string) => void;
@@ -10,6 +11,7 @@ interface ProjectPageProps {
 export function ProjectPage({ onNavigate }: ProjectPageProps) {
   const featuredProjects = projects.filter((p) => p.featured);
   const otherProjects = projects.filter((p) => !p.featured);
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen py-16">
@@ -109,7 +111,7 @@ export function ProjectPage({ onNavigate }: ProjectPageProps) {
                     delay: featuredProjects.length * 0.1 + index * 0.1,
                   }}
                   className="group cursor-pointer"
-                  onClick={() => onNavigate("project-detail", project.id)}
+                  onClick={() => navigate(`/project/${project.id}`)}
                 >
                   <div className="border-2 border-black dark:border-white p-6 bg-white dark:bg-black hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] transition-all h-full">
                     {/* Project Image */}

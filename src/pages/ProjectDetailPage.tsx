@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { motion } from "motion/react";
 import { ArrowLeft, ExternalLink, Github, Calendar, Send } from "lucide-react";
@@ -7,14 +8,12 @@ import { Button } from "../components/Button";
 import { PageType } from "../lib/types";
 
 interface ProjectDetailPageProps {
-  projectId: string | null;
   onNavigate: (page: PageType) => void;
 }
 
-export function ProjectDetailPage({
-  projectId,
-  onNavigate,
-}: ProjectDetailPageProps) {
+export function ProjectDetailPage({ onNavigate }: ProjectDetailPageProps) {
+  const { id } = useParams<{ id: string }>();
+  const projectId = id;
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "success" | "error"
   >("idle");
