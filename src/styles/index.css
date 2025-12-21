@@ -10,4 +10,10 @@
     @apply bg-background text-foreground;
     cursor: url("/cursor/cursor.ico") 0 0, auto;
   }
+  a,
+  button,
+  a:hover,
+  button:hover {
+    cursor: url("/cursor/cursor.ico") 0 0, auto;
+  }
 }
