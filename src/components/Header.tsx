@@ -1,8 +1,8 @@
-import { motion } from 'motion/react';
-import { Menu, X } from 'lucide-react';
-import { useState } from 'react';
-import { personalInfo } from '../lib/data';
-import { PageType } from '../lib/types';
+import { motion } from "motion/react";
+import { Menu, X } from "lucide-react";
+import { useState } from "react";
+import { PageType } from "../lib/types";
+import { ThemeToggle } from "./ThemeToggle";
 
 interface HeaderProps {
   currentPage: PageType;
@@ -13,12 +13,12 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems: { label: string; page: PageType }[] = [
-    { label: 'Home', page: 'home' },
-    { label: 'About', page: 'about' },
-    { label: 'Experience', page: 'experience' },
-    { label: 'Certifications', page: 'certification' },
-    { label: 'Projects', page: 'project' },
-    { label: 'Contact', page: 'contact' },
+    { label: "Home", page: "home" },
+    { label: "About", page: "about" },
+    { label: "Experience", page: "experience" },
+    { label: "Certifications", page: "certification" },
+    { label: "Projects", page: "project" },
+    { label: "Contact", page: "contact" },
   ];
 
   const handleNavigate = (page: PageType) => {
@@ -30,16 +30,21 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="sticky top-0 z-40 bg-white border-b-2 border-black"
+      className="sticky top-0 z-40 bg-white dark:bg-black border-b-2 border-black dark:border-white"
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo/Name */}
           <button
-            onClick={() => handleNavigate('home')}
+            onClick={() => handleNavigate("home")}
             className="hover:opacity-70 transition-opacity"
           >
-            <span className="text-2xl font-black">{personalInfo.name}</span>
+            <img
+              src="/images/avatar.png"
+              alt="Avatar"
+              className="w-15 rounded-full object-cover"
+              style={{ transform: "scaleX(-1)" }}
+            />
           </button>
 
           {/* Desktop Navigation */}
@@ -48,24 +53,27 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
               <button
                 key={item.page}
                 onClick={() => handleNavigate(item.page)}
-                className={`relative py-2 transition-opacity hover:opacity-70 ${
-                  currentPage === item.page ? 'font-bold' : ''
+                className={`relative py-2 transition-opacity hover:opacity-70 text-black dark:text-white ${
+                  currentPage === item.page ? "font-bold" : ""
                 }`}
               >
                 {item.label}
                 {currentPage === item.page && (
                   <motion.div
                     layoutId="activeNav"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-black"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-black dark:bg-white"
                   />
                 )}
               </button>
             ))}
           </nav>
 
+          {/* Theme Toggle */}
+          <ThemeToggle />
+
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2"
+            className="md:hidden p-2 text-black dark:text-white"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -77,16 +85,18 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
         {mobileMenuOpen && (
           <motion.nav
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden mt-4 border-t-2 border-black pt-4"
+            className="md:hidden mt-4 border-t-2 border-black dark:border-white pt-4"
           >
             {navItems.map((item) => (
               <button
                 key={item.page}
                 onClick={() => handleNavigate(item.page)}
-                className={`block w-full text-left py-3 px-4 hover:bg-gray-100 transition-colors ${
-                  currentPage === item.page ? 'bg-black text-white' : ''
+                className={`block w-full text-left py-3 px-4 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors ${
+                  currentPage === item.page
+                    ? "bg-black dark:bg-white text-white dark:text-black"
+                    : ""
                 }`}
               >
                 {item.label}

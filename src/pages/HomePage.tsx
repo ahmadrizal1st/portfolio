@@ -21,7 +21,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-20 md:py-32 border-b-2 border-black">
+      <section className="py-20 md:py-32 border-b-2 border-black dark:border-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -54,7 +54,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6, duration: 0.6 }}
-                className="text-lg md:text-xl text-gray-700 mb-8 max-w-2xl"
+                className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8 max-w-2xl"
               >
                 {personalInfo.bio}
               </motion.p>
@@ -95,7 +95,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       {/* Experience Highlights */}
-      <section className="py-16 border-b-2 border-black">
+      <section className="py-16 border-b-2 border-black dark:border-white">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-3xl md:text-4xl font-black flex items-center gap-3">
@@ -118,7 +118,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="border-2 border-black p-6 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all"
+                className="border-2 border-black dark:border-white p-6 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] transition-all"
               >
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-4">
@@ -133,19 +133,23 @@ export function HomePage({ onNavigate }: HomePageProps) {
                       <h3 className="font-black text-xl mb-1">
                         {exp.position}
                       </h3>
-                      <p className="text-gray-700">{exp.company}</p>
+                      <p className="text-gray-700 dark:text-gray-300">
+                        {exp.company}
+                      </p>
                     </div>
                   </div>
                   <span className="bg-black text-white px-3 py-1 text-sm">
                     {exp.duration.split(" - ")[0]}
                   </span>
                 </div>
-                <p className="text-gray-600 mb-4">{exp.description}</p>
+                <p className="text-gray-600 dark:text-gray-400 mb-4">
+                  {exp.description}
+                </p>
                 <div className="flex flex-wrap gap-2">
                   {exp.skills.slice(0, 3).map((skill) => (
                     <span
                       key={skill}
-                      className="border border-black px-2 py-1 text-sm"
+                      className="border border-black dark:border-white px-2 py-1 text-sm"
                     >
                       {skill}
                     </span>
@@ -158,7 +162,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       {/* Certifications Spotlight */}
-      <section className="py-16 border-b-2 border-black bg-gray-50">
+      <section className="py-16 border-b-2 border-black dark:border-white bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-3xl md:text-4xl font-black flex items-center gap-3">
@@ -181,7 +185,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white border-2 border-black p-6"
+                className="bg-white dark:bg-gray-800 border-2 border-black dark:border-white p-6"
               >
                 {cert.imageUrl ? (
                   <img
@@ -193,8 +197,12 @@ export function HomePage({ onNavigate }: HomePageProps) {
                   <Award size={32} className="mb-4" />
                 )}
                 <h3 className="font-black text-lg mb-2">{cert.name}</h3>
-                <p className="text-gray-700 mb-2">{cert.issuer}</p>
-                <p className="text-sm text-gray-600">{cert.date}</p>
+                <p className="text-gray-700 dark:text-gray-300 mb-2">
+                  {cert.issuer}
+                </p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  {cert.date}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -202,7 +210,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       {/* Projects Showcase */}
-      <section className="py-16">
+      <section className="py-16 bg-gray-50 dark:bg-black">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-3xl md:text-4xl font-black flex items-center gap-3">
@@ -228,7 +236,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 className="group cursor-pointer"
                 onClick={() => onNavigate("project-detail", project.id)}
               >
-                <div className="border-2 border-black p-6 h-full hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all">
+                <div className="border-2 border-black dark:border-white p-6 h-full hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] transition-all">
                   {project.imageUrl && (
                     <img
                       src={project.imageUrl}
@@ -245,7 +253,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
                       size={20}
                     />
                   </div>
-                  <p className="text-gray-700 mb-4">{project.description}</p>
+                  <p className="text-gray-700 dark:text-gray-300 mb-4">
+                    {project.description}
+                  </p>
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.slice(0, 3).map((tech) => (
                       <span
@@ -264,7 +274,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-black text-white">
+      <section className="py-20 bg-black dark:bg-white text-white dark:text-black">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

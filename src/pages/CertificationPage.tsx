@@ -16,7 +16,7 @@ export function CertificationPage() {
             <Award size={48} />
             Certifications
           </h1>
-          <p className="text-xl text-gray-700 max-w-3xl">
+          <p className="text-xl text-muted-foreground max-w-3xl">
             Professional certifications and achievements that validate my
             expertise.
           </p>
@@ -30,18 +30,20 @@ export function CertificationPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="border-2 border-black p-6 bg-white hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all"
+              className="border-2 border-border p-6 bg-card hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] transition-all"
             >
               {/* Icon */}
               <div className="mb-6">
-                <Award size={48} strokeWidth={2} />
+                <Award size={48} strokeWidth={2} className="text-foreground" />
               </div>
 
               {/* Content */}
               <h3 className="text-2xl font-black mb-3">{cert.name}</h3>
-              <p className="text-lg text-gray-700 mb-4">{cert.issuer}</p>
+              <p className="text-lg text-muted-foreground mb-4">
+                {cert.issuer}
+              </p>
 
-              <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
                 <Calendar size={16} />
                 <span>{cert.date}</span>
               </div>
@@ -51,19 +53,19 @@ export function CertificationPage() {
                 <img
                   src={cert.imageUrl}
                   alt={`${cert.name} certificate`}
-                  className="w-full aspect-[4/3] object-cover border-2 border-black mb-4"
+                  className="w-full aspect-[4/3] object-cover border-2 border-border mb-4"
                 />
               ) : (
-                <div className="w-full aspect-[4/3] bg-gray-100 border-2 border-black mb-4 flex items-center justify-center">
-                  <Award size={48} className="text-gray-400" />
+                <div className="w-full aspect-[4/3] bg-muted border-2 border-border mb-4 flex items-center justify-center">
+                  <Award size={48} className="text-muted-foreground" />
                 </div>
               )}
 
-              <p className="text-gray-700 mb-4">{cert.description}</p>
+              <p className="text-muted-foreground mb-4">{cert.description}</p>
 
               {/* Credential Info */}
               {cert.credentialId && (
-                <p className="text-sm text-gray-600 mb-2">
+                <p className="text-sm text-muted-foreground mb-2">
                   <span className="font-bold">Credential ID:</span>{" "}
                   {cert.credentialId}
                 </p>
@@ -75,7 +77,7 @@ export function CertificationPage() {
                   {cert.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="bg-black text-white px-2 py-1 text-sm"
+                      className="bg-primary text-primary-foreground px-2 py-1 text-sm"
                     >
                       {skill}
                     </span>
@@ -89,7 +91,7 @@ export function CertificationPage() {
                   href={cert.credentialUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm hover:underline mt-4 border-t-2 border-black pt-4"
+                  className="inline-flex items-center gap-2 text-sm hover:underline mt-4 border-t-2 border-border pt-4"
                 >
                   <ExternalLink size={16} />
                   Verify Credential
@@ -104,26 +106,26 @@ export function CertificationPage() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-16 p-8 border-2 border-black bg-gray-50"
+          className="mt-16 p-8 border-2 border-border bg-muted"
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div>
               <div className="text-5xl font-black mb-2">
                 {certifications.length}
               </div>
-              <div className="text-gray-700">Total Certifications</div>
+              <div className="text-muted-foreground">Total Certifications</div>
             </div>
             <div>
               <div className="text-5xl font-black mb-2">
                 {new Set(certifications.flatMap((c) => c.skills)).size}
               </div>
-              <div className="text-gray-700">Verified Skills</div>
+              <div className="text-muted-foreground">Verified Skills</div>
             </div>
             <div>
               <div className="text-5xl font-black mb-2">
                 {new Set(certifications.map((c) => c.issuer)).size}
               </div>
-              <div className="text-gray-700">Issuing Organizations</div>
+              <div className="text-muted-foreground">Issuing Organizations</div>
             </div>
           </div>
         </motion.div>

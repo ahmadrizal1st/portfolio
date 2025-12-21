@@ -1,23 +1,25 @@
-import { motion } from 'motion/react';
-import { Mail, MapPin, Send } from 'lucide-react';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { useState } from 'react';
-import { personalInfo } from '../lib/data';
-import { Button } from '../components/Button';
+import { motion } from "motion/react";
+import { Mail, MapPin, Send } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { useState } from "react";
+import { personalInfo } from "../lib/data";
+import { Button } from "../components/Button";
 
 // Zod schema for form validation
 const contactSchema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters'),
-  email: z.string().email('Please enter a valid email address'),
-  subject: z.string().min(5, 'Subject must be at least 5 characters'),
-  message: z.string().min(10, 'Message must be at least 10 characters'),
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email address"),
+  subject: z.string().min(5, "Subject must be at least 5 characters"),
+  message: z.string().min(10, "Message must be at least 10 characters"),
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
 
 export function ContactPage() {
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
@@ -29,20 +31,20 @@ export function ContactPage() {
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
-    
+
     // Simulate API call (replace with actual API call when using Supabase)
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      console.log('Form Data:', data);
-      setSubmitStatus('success');
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      console.log("Form Data:", data);
+      setSubmitStatus("success");
       reset();
-      
+
       // Reset status after 5 seconds
-      setTimeout(() => setSubmitStatus('idle'), 5000);
+      setTimeout(() => setSubmitStatus("idle"), 5000);
     } catch (error) {
-      setSubmitStatus('error');
-      setTimeout(() => setSubmitStatus('idle'), 5000);
+      setSubmitStatus("error");
+      setTimeout(() => setSubmitStatus("idle"), 5000);
     } finally {
       setIsSubmitting(false);
     }
@@ -61,8 +63,9 @@ export function ContactPage() {
             <Mail size={48} />
             Get In Touch
           </h1>
-          <p className="text-xl text-gray-700 max-w-3xl">
-            Have a project in mind or want to collaborate? I'd love to hear from you!
+          <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl">
+            Have a project in mind or want to collaborate? I'd love to hear from
+            you!
           </p>
         </motion.div>
 
@@ -73,9 +76,9 @@ export function ContactPage() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.1 }}
           >
-            <div className="border-2 border-black p-8 bg-white">
+            <div className="border-2 border-black dark:border-white p-8 bg-white dark:bg-black">
               <h2 className="text-2xl font-black mb-6">Send Me a Message</h2>
-              
+
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 {/* Name Field */}
                 <div>
@@ -83,17 +86,22 @@ export function ContactPage() {
                     Name *
                   </label>
                   <input
-                    {...register('name', { 
-                      required: 'Name is required',
-                      minLength: { value: 2, message: 'Name must be at least 2 characters' }
+                    {...register("name", {
+                      required: "Name is required",
+                      minLength: {
+                        value: 2,
+                        message: "Name must be at least 2 characters",
+                      },
                     })}
                     type="text"
                     id="name"
-                    className="w-full px-4 py-3 border-2 border-black focus:outline-none focus:ring-2 focus:ring-black"
+                    className="w-full px-4 py-3 border-2 border-black dark:border-white focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white bg-white dark:bg-gray-800 text-black dark:text-white"
                     placeholder="Your name"
                   />
                   {errors.name && (
-                    <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>
+                    <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+                      {errors.name.message}
+                    </p>
                   )}
                 </div>
 
@@ -103,17 +111,22 @@ export function ContactPage() {
                     Email *
                   </label>
                   <input
-                    {...register('email', { 
-                      required: 'Email is required',
-                      pattern: { value: /^\S+@\S+$/i, message: 'Please enter a valid email' }
+                    {...register("email", {
+                      required: "Email is required",
+                      pattern: {
+                        value: /^\S+@\S+$/i,
+                        message: "Please enter a valid email",
+                      },
                     })}
                     type="email"
                     id="email"
-                    className="w-full px-4 py-3 border-2 border-black focus:outline-none focus:ring-2 focus:ring-black"
+                    className="w-full px-4 py-3 border-2 border-black dark:border-white focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white bg-white dark:bg-gray-800 text-black dark:text-white"
                     placeholder="your.email@example.com"
                   />
                   {errors.email && (
-                    <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
+                    <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+                      {errors.email.message}
+                    </p>
                   )}
                 </div>
 
@@ -123,17 +136,22 @@ export function ContactPage() {
                     Subject *
                   </label>
                   <input
-                    {...register('subject', { 
-                      required: 'Subject is required',
-                      minLength: { value: 5, message: 'Subject must be at least 5 characters' }
+                    {...register("subject", {
+                      required: "Subject is required",
+                      minLength: {
+                        value: 5,
+                        message: "Subject must be at least 5 characters",
+                      },
                     })}
                     type="text"
                     id="subject"
-                    className="w-full px-4 py-3 border-2 border-black focus:outline-none focus:ring-2 focus:ring-black"
+                    className="w-full px-4 py-3 border-2 border-black dark:border-white focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white bg-white dark:bg-gray-800 text-black dark:text-white"
                     placeholder="What's this about?"
                   />
                   {errors.subject && (
-                    <p className="mt-1 text-sm text-red-600">{errors.subject.message}</p>
+                    <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+                      {errors.subject.message}
+                    </p>
                   )}
                 </div>
 
@@ -143,17 +161,22 @@ export function ContactPage() {
                     Message *
                   </label>
                   <textarea
-                    {...register('message', { 
-                      required: 'Message is required',
-                      minLength: { value: 10, message: 'Message must be at least 10 characters' }
+                    {...register("message", {
+                      required: "Message is required",
+                      minLength: {
+                        value: 10,
+                        message: "Message must be at least 10 characters",
+                      },
                     })}
                     id="message"
                     rows={6}
-                    className="w-full px-4 py-3 border-2 border-black focus:outline-none focus:ring-2 focus:ring-black resize-none"
+                    className="w-full px-4 py-3 border-2 border-black dark:border-white focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white resize-none bg-white dark:bg-black text-black dark:text-white"
                     placeholder="Tell me about your project..."
                   />
                   {errors.message && (
-                    <p className="mt-1 text-sm text-red-600">{errors.message.message}</p>
+                    <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+                      {errors.message.message}
+                    </p>
                   )}
                 </div>
 
@@ -165,7 +188,7 @@ export function ContactPage() {
                   size="lg"
                 >
                   {isSubmitting ? (
-                    'Sending...'
+                    "Sending..."
                   ) : (
                     <>
                       <Send size={20} />
@@ -175,21 +198,21 @@ export function ContactPage() {
                 </Button>
 
                 {/* Status Messages */}
-                {submitStatus === 'success' && (
+                {submitStatus === "success" && (
                   <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="p-4 bg-green-100 border-2 border-green-600 text-green-800"
+                    className="p-4 bg-green-100 dark:bg-green-900 border-2 border-green-600 dark:border-green-400 text-green-800 dark:text-green-200"
                   >
                     Message sent successfully! I'll get back to you soon.
                   </motion.div>
                 )}
 
-                {submitStatus === 'error' && (
+                {submitStatus === "error" && (
                   <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="p-4 bg-red-100 border-2 border-red-600 text-red-800"
+                    className="p-4 bg-red-100 dark:bg-red-900 border-2 border-red-600 dark:border-red-400 text-red-800 dark:text-red-200"
                   >
                     Something went wrong. Please try again.
                   </motion.div>
@@ -206,17 +229,17 @@ export function ContactPage() {
             className="space-y-8"
           >
             {/* Contact Details */}
-            <div className="border-2 border-black p-8 bg-gray-50">
+            <div className="border-2 border-black dark:border-white p-8 bg-gray-50 dark:bg-gray-800">
               <h2 className="text-2xl font-black mb-6">Contact Information</h2>
-              
+
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
                   <Mail className="flex-shrink-0 mt-1" size={24} />
                   <div>
                     <div className="font-bold mb-1">Email</div>
-                    <a 
+                    <a
                       href={`mailto:${personalInfo.email}`}
-                      className="text-gray-700 hover:underline"
+                      className="text-gray-700 dark:text-gray-300 hover:underline"
                     >
                       {personalInfo.email}
                     </a>
@@ -228,9 +251,9 @@ export function ContactPage() {
                     <Mail className="flex-shrink-0 mt-1" size={24} />
                     <div>
                       <div className="font-bold mb-1">Phone</div>
-                      <a 
+                      <a
                         href={`tel:${personalInfo.phone}`}
-                        className="text-gray-700 hover:underline"
+                        className="text-gray-700 dark:text-gray-300 hover:underline"
                       >
                         {personalInfo.phone}
                       </a>
@@ -242,30 +265,33 @@ export function ContactPage() {
                   <MapPin className="flex-shrink-0 mt-1" size={24} />
                   <div>
                     <div className="font-bold mb-1">Location</div>
-                    <p className="text-gray-700">{personalInfo.location}</p>
+                    <p className="text-gray-700 dark:text-gray-300">
+                      {personalInfo.location}
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Note */}
-            <div className="border-2 border-black p-8 bg-white">
+            <div className="border-2 border-black dark:border-white p-8 bg-white dark:bg-black">
               <h3 className="text-xl font-black mb-4">Response Time</h3>
-              <p className="text-gray-700">
-                I typically respond to messages within 24-48 hours. For urgent inquiries, 
-                please mention "URGENT" in the subject line.
+              <p className="text-gray-700 dark:text-gray-300">
+                I typically respond to messages within 24-48 hours. For urgent
+                inquiries, please mention "URGENT" in the subject line.
               </p>
             </div>
 
             {/* Alternative Contact */}
-            <div className="border-2 border-black p-8 bg-black text-white">
+            <div className="border-2 border-black dark:border-white p-8 bg-black dark:bg-white text-white dark:text-black">
               <h3 className="text-xl font-black mb-4">Prefer Another Way?</h3>
-              <p className="mb-4">
-                Feel free to reach out to me on social media or schedule a call at your convenience.
+              <p className="mb-4 text-gray-300 dark:text-gray-700">
+                Feel free to reach out to me on social media or schedule a call
+                at your convenience.
               </p>
               <div className="space-y-2">
                 {personalInfo.linkedin && (
-                  <a 
+                  <a
                     href={personalInfo.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -275,7 +301,7 @@ export function ContactPage() {
                   </a>
                 )}
                 {personalInfo.github && (
-                  <a 
+                  <a
                     href={personalInfo.github}
                     target="_blank"
                     rel="noopener noreferrer"

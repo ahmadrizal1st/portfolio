@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { ThemeProvider } from "next-themes";
 import { PageType } from "../lib/types";
 import { SplashPage } from "../pages/SplashPage";
 import { HomePage } from "../pages/HomePage";
@@ -90,10 +91,12 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <Header currentPage={currentPage} onNavigate={handleNavigate} />
-      <main>{renderPage()}</main>
-      <Footer onNavigate={handleNavigate} />
-    </div>
+    <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+      <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white">
+        <Header currentPage={currentPage} onNavigate={handleNavigate} />
+        <main>{renderPage()}</main>
+        <Footer onNavigate={handleNavigate} />
+      </div>
+    </ThemeProvider>
   );
 }

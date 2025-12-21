@@ -24,7 +24,7 @@ export function ProjectPage({ onNavigate }: ProjectPageProps) {
             <Code size={48} />
             Projects
           </h1>
-          <p className="text-xl text-gray-700 max-w-3xl">
+          <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl">
             A collection of projects I've worked on, from web applications to
             developer tools.
           </p>
@@ -47,14 +47,14 @@ export function ProjectPage({ onNavigate }: ProjectPageProps) {
                   className="group cursor-pointer"
                   onClick={() => onNavigate("project-detail", project.id)}
                 >
-                  <div className="border-2 border-black p-8 bg-gray-100 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all h-full">
+                  <div className="border-2 border-black dark:border-white p-8 bg-gray-100 dark:bg-gray-800 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[12px_12px_0px_0px_rgba(255,255,255,1)] transition-all h-full">
                     {/* Project Image */}
                     {project.imageUrl && (
                       <div className="mb-6">
                         <img
                           src={project.imageUrl}
                           alt={project.title}
-                          className="w-full aspect-[16/9] object-cover border-2 border-black"
+                          className="w-full aspect-[16/9] object-cover border-2 border-black dark:border-white"
                         />
                       </div>
                     )}
@@ -64,7 +64,7 @@ export function ProjectPage({ onNavigate }: ProjectPageProps) {
                         <h3 className="text-3xl font-black mb-2 group-hover:underline">
                           {project.title}
                         </h3>
-                        <p className="text-sm text-gray-600 mb-4">
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
                           {project.year} • {project.category}
                         </p>
                       </div>
@@ -74,7 +74,7 @@ export function ProjectPage({ onNavigate }: ProjectPageProps) {
                       />
                     </div>
 
-                    <p className="text-lg text-gray-700 mb-6">
+                    <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
                       {project.description}
                     </p>
 
@@ -82,7 +82,7 @@ export function ProjectPage({ onNavigate }: ProjectPageProps) {
                       {project.technologies.map((tech) => (
                         <span
                           key={tech}
-                          className="bg-black text-white px-3 py-1 text-sm"
+                          className="bg-black dark:bg-white text-white dark:text-black px-3 py-1 text-sm"
                         >
                           {tech}
                         </span>
@@ -111,14 +111,14 @@ export function ProjectPage({ onNavigate }: ProjectPageProps) {
                   className="group cursor-pointer"
                   onClick={() => onNavigate("project-detail", project.id)}
                 >
-                  <div className="border-2 border-black p-6 bg-white hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all h-full">
+                  <div className="border-2 border-black dark:border-white p-6 bg-white dark:bg-black hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] transition-all h-full">
                     {/* Project Image */}
                     {project.imageUrl && (
                       <div className="mb-4">
                         <img
                           src={project.imageUrl}
                           alt={project.title}
-                          className="w-full aspect-[16/9] object-cover border-2 border-black"
+                          className="w-full aspect-[16/9] object-cover border-2 border-black dark:border-white"
                         />
                       </div>
                     )}
@@ -133,22 +133,24 @@ export function ProjectPage({ onNavigate }: ProjectPageProps) {
                       />
                     </div>
 
-                    <p className="text-sm text-gray-600 mb-3">
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
                       {project.year} • {project.category}
                     </p>
-                    <p className="text-gray-700 mb-4">{project.description}</p>
+                    <p className="text-gray-700 dark:text-gray-300 mb-4">
+                      {project.description}
+                    </p>
 
                     <div className="flex flex-wrap gap-2">
                       {project.technologies.slice(0, 3).map((tech) => (
                         <span
                           key={tech}
-                          className="border border-black px-2 py-1 text-xs"
+                          className="border border-black dark:border-white px-2 py-1 text-xs"
                         >
                           {tech}
                         </span>
                       ))}
                       {project.technologies.length > 3 && (
-                        <span className="text-xs px-2 py-1 text-gray-600">
+                        <span className="text-xs px-2 py-1 text-gray-600 dark:text-gray-400">
                           +{project.technologies.length - 3} more
                         </span>
                       )}

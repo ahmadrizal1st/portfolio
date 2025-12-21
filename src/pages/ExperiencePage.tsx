@@ -27,7 +27,7 @@ export function ExperiencePage() {
             <Briefcase size={48} />
             Experience
           </h1>
-          <p className="text-xl text-gray-700 max-w-3xl">
+          <p className="text-xl text-muted-foreground max-w-3xl">
             My professional journey, organizations, and volunteer work.
           </p>
         </motion.div>
@@ -44,10 +44,10 @@ export function ExperiencePage() {
               <button
                 key={type}
                 onClick={() => setFilter(type)}
-                className={`px-6 py-2 border-2 border-black transition-all ${
+                className={`px-6 py-2 border-2 border-border transition-all ${
                   filter === type
-                    ? "bg-black text-white"
-                    : "bg-white text-black hover:bg-gray-100"
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-card text-card-foreground hover:bg-accent"
                 }`}
               >
                 {type.charAt(0).toUpperCase() + type.slice(1).replace("-", " ")}
@@ -59,7 +59,7 @@ export function ExperiencePage() {
         {/* Timeline */}
         <div className="relative">
           {/* Timeline Line */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-black md:transform md:-translate-x-1/2" />
+          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-border md:transform md:-translate-x-1/2" />
 
           {filteredExperiences.map((exp, index) => (
             <motion.div
@@ -74,7 +74,7 @@ export function ExperiencePage() {
             >
               {/* Timeline Dot */}
               <div
-                className={`absolute top-0 w-4 h-4 bg-black border-4 border-white rounded-full ${
+                className={`absolute top-0 w-4 h-4 bg-primary border-4 border-background rounded-full ${
                   index % 2 === 0 ? "left-0 md:right-0" : "left-0"
                 } md:transform md:-translate-x-1/2`}
               />
@@ -85,16 +85,18 @@ export function ExperiencePage() {
                   index % 2 === 0 ? "md:mr-8" : "md:ml-8"
                 }`}
               >
-                <div className="border-2 border-black p-6 bg-white hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all">
+                <div className="border-2 border-border p-6 bg-card hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] transition-all">
                   {/* Header */}
                   <div className="mb-4">
-                    <span className="inline-block bg-black text-white px-3 py-1 text-sm mb-3">
+                    <span className="inline-block bg-primary text-primary-foreground px-3 py-1 text-sm mb-3">
                       {exp.year}
                     </span>
                     <h3 className="text-2xl font-black mb-2">{exp.position}</h3>
-                    <p className="text-xl text-gray-700 mb-3">{exp.company}</p>
+                    <p className="text-xl text-muted-foreground mb-3">
+                      {exp.company}
+                    </p>
 
-                    <div className="flex flex-col gap-2 text-sm text-gray-600">
+                    <div className="flex flex-col gap-2 text-sm text-muted-foreground">
                       <div className="flex items-center gap-2">
                         <Calendar size={16} />
                         <span>{exp.duration}</span>
@@ -111,12 +113,14 @@ export function ExperiencePage() {
                     <img
                       src={exp.imageUrl}
                       alt={`${exp.position} at ${exp.company}`}
-                      className="w-full aspect-[16/9] object-cover border-2 border-black mb-4"
+                      className="w-full aspect-[16/9] object-cover border-2 border-border mb-4"
                     />
                   )}
 
                   {/* Description */}
-                  <p className="text-gray-700 mb-4">{exp.description}</p>
+                  <p className="text-muted-foreground mb-4">
+                    {exp.description}
+                  </p>
 
                   {/* Achievements Accordion */}
                   <Accordion.Root type="single" collapsible>
@@ -125,7 +129,7 @@ export function ExperiencePage() {
                         Key Achievements ↓
                       </Accordion.Trigger>
                       <Accordion.Content>
-                        <ul className="list-disc list-inside space-y-2 text-gray-700 ml-2">
+                        <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-2">
                           {exp.achievements.map((achievement, i) => (
                             <li key={i}>{achievement}</li>
                           ))}
@@ -135,7 +139,7 @@ export function ExperiencePage() {
                   </Accordion.Root>
 
                   {/* Skills */}
-                  <div className="mt-4 pt-4 border-t-2 border-black">
+                  <div className="mt-4 pt-4 border-t-2 border-border">
                     <div className="flex flex-wrap gap-2">
                       {exp.skills.map((skill) => (
                         <span
@@ -150,7 +154,7 @@ export function ExperiencePage() {
 
                   {/* Type Badge */}
                   <div className="mt-4">
-                    <span className="inline-block text-xs px-2 py-1 bg-gray-100 border border-black">
+                    <span className="inline-block text-xs px-2 py-1 bg-muted border border-border">
                       {exp.type.toUpperCase()}
                     </span>
                   </div>
