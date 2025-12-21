@@ -1,0 +1,126 @@
+import { motion } from 'motion/react';
+import { Code, ArrowRight, Star } from 'lucide-react';
+import { projects } from '../lib/data';
+import { PageType } from '../lib/types';
+
+interface ProjectPageProps {
+  onNavigate: (page: PageType, projectId?: string) => void;
+}
+
+export function ProjectPage({ onNavigate }: ProjectPageProps) {
+  const featuredProjects = projects.filter(p => p.featured);
+  const otherProjects = projects.filter(p => !p.featured);
+
+  return (
+    <div className="min-h-screen py-16">
+      <div className="container mx-auto px-4">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-12"
+        >
+          <h1 className="text-5xl md:text-6xl font-black mb-4 flex items-center gap-4">
+            <Code size={48} />
+            Projects
+          </h1>
+          <p className="text-xl text-gray-700 max-w-3xl">
+            A collection of projects I've worked on, from web applications to developer tools.
+          </p>
+        </motion.div>
+
+        {/* Featured Projects */}
+        {featuredProjects.length > 0 && (
+          <div className="mb-16">
+            <h2 className="text-3xl font-black mb-8 flex items-center gap-3">
+              <Star size={24} fill="currentColor" />
+              Featured Projects
+            </h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              {featuredProjects.map((project, index) => (
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="group cursor-pointer"
+                  onClick={() => onNavigate('project-detail', project.id)}
+                >
+                  <div className="border-2 border-black p-8 bg-white hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all h-full">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex-1">
+                        <h3 className="text-3xl font-black mb-2 group-hover:underline">
+                          {project.title}
+                        </h3>
+                        <p className="text-sm text-gray-600 mb-4">{project.year} • {project.category}</p>
+                      </div>
+                      <ArrowRight className="group-hover:translate-x-2 transition-transform" size={24} />
+                    </div>
+
+                    <p className="text-lg text-gray-700 mb-6">{project.description}</p>
+
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech) => (
+                        <span
+                          key={tech}
+                          className="bg-black text-white px-3 py-1 text-sm"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Other Projects */}
+        {otherProjects.length > 0 && (
+          <div>
+            <h2 className="text-3xl font-black mb-8">All Projects</h2>
+            <div className="grid md:grid-cols-3 gap-6">
+              {otherProjects.map((project, index) => (
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: (featuredProjects.length * 0.1) + (index * 0.1) }}
+                  className="group cursor-pointer"
+                  onClick={() => onNavigate('project-detail', project.id)}
+                >
+                  <div className="border-2 border-black p-6 bg-white hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all h-full">
+                    <div className="flex items-start justify-between mb-4">
+                      <h3 className="text-xl font-black group-hover:underline">{project.title}</h3>
+                      <ArrowRight className="group-hover:translate-x-1 transition-transform flex-shrink-0" size={20} />
+                    </div>
+                    
+                    <p className="text-sm text-gray-600 mb-3">{project.year} • {project.category}</p>
+                    <p className="text-gray-700 mb-4">{project.description}</p>
+
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.slice(0, 3).map((tech) => (
+                        <span
+                          key={tech}
+                          className="border border-black px-2 py-1 text-xs"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                      {project.technologies.length > 3 && (
+                        <span className="text-xs px-2 py-1 text-gray-600">
+                          +{project.technologies.length - 3} more
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
