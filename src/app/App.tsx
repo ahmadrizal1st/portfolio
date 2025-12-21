@@ -50,34 +50,6 @@ function AppContent() {
     }
   }, [location.pathname]);
 
-  const handleNavigate = (page: PageType, id?: string) => {
-    // Show loading for route transitions
-    setIsLoading(true);
-    setIsProgrammaticNavigation(true);
-
-    // Scroll to top
-    window.scrollTo(0, 0);
-
-    setTimeout(() => {
-      if (page === "project-detail" && id) {
-        navigate(`/project/${id}`);
-      } else {
-        const routeMap: Record<PageType, string> = {
-          splash: "/",
-          home: "/",
-          about: "/about",
-          experience: "/experience",
-          certification: "/certification",
-          project: "/project",
-          "project-detail": "/project",
-          contact: "/contact",
-        };
-        navigate(routeMap[page] || "/");
-      }
-      setIsLoading(false);
-    }, 1000);
-  };
-
   const handleSplashComplete = () => {
     setIsLoading(true);
     setIsProgrammaticNavigation(true);
@@ -118,18 +90,12 @@ function AppContent() {
       <Header currentPage={currentPage} />
       <main>
         <Routes>
-          <Route path="/" element={<HomePage onNavigate={handleNavigate} />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/experience" element={<ExperiencePage />} />
           <Route path="/certification" element={<CertificationPage />} />
-          <Route
-            path="/project"
-            element={<ProjectPage onNavigate={handleNavigate} />}
-          />
-          <Route
-            path="/project/:id"
-            element={<ProjectDetailPage onNavigate={handleNavigate} />}
-          />
+          <Route path="/project" element={<ProjectPage />} />
+          <Route path="/project/:id" element={<ProjectDetailPage />} />
           <Route path="/contact" element={<ContactPage />} />
         </Routes>
       </main>

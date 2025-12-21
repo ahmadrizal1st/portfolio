@@ -1,17 +1,20 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { motion } from "motion/react";
-import { ArrowLeft, ExternalLink, Github, Calendar, Send } from "lucide-react";
+import {
+  ArrowLeft,
+  ExternalLink,
+  Github,
+  Calendar,
+  Send,
+  Code,
+} from "lucide-react";
 import { projects } from "../lib/data";
 import { Button } from "../components/Button";
-import { PageType } from "../lib/types";
 
-interface ProjectDetailPageProps {
-  onNavigate: (page: PageType) => void;
-}
-
-export function ProjectDetailPage({ onNavigate }: ProjectDetailPageProps) {
+export function ProjectDetailPage() {
+  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const projectId = id;
   const [submitStatus, setSubmitStatus] = useState<
@@ -92,9 +95,7 @@ export function ProjectDetailPage({ onNavigate }: ProjectDetailPageProps) {
       <div className="min-h-screen py-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl font-black mb-4">Project Not Found</h1>
-          <Button onClick={() => onNavigate("project")}>
-            Back to Projects
-          </Button>
+          <Button onClick={() => navigate("/project")}>Back to Projects</Button>
         </div>
       </div>
     );
@@ -107,7 +108,7 @@ export function ProjectDetailPage({ onNavigate }: ProjectDetailPageProps) {
         <motion.button
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          onClick={() => onNavigate("project")}
+          onClick={() => navigate("/project")}
           className="flex items-center gap-2 mb-8 hover:underline"
         >
           <ArrowLeft size={20} />
@@ -149,15 +150,22 @@ export function ProjectDetailPage({ onNavigate }: ProjectDetailPageProps) {
             className="lg:col-span-2"
           >
             {/* Project Image */}
-            {project.imageUrl && (
-              <div className="mb-8">
+            <div className="mb-8">
+              {project.imageUrl ? (
                 <img
                   src={project.imageUrl}
                   alt={project.title}
                   className="w-full aspect-[16/9] object-cover border-2 border-black dark:border-white"
                 />
-              </div>
-            )}
+              ) : (
+                <div className="w-full aspect-[16/9] border-2 border-black dark:border-white bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+                  <Code
+                    size={64}
+                    className="text-gray-400 dark:text-gray-600"
+                  />
+                </div>
+              )}
+            </div>
 
             <div className="border-2 border-black dark:border-white p-8 bg-white dark:bg-black">
               <h2 className="text-3xl font-black mb-6">About This Project</h2>
@@ -418,10 +426,31 @@ export function ProjectDetailPage({ onNavigate }: ProjectDetailPageProps) {
               .map((relatedProject) => (
                 <div
                   key={relatedProject.id}
-                  onClick={() => window.scrollTo(0, 0)}
+                  onClick={() => {
+                    navigate(`/project/${relatedProject.id}`);
+                    window.scrollTo(0, 0);
+                  }}
                   className="cursor-pointer group"
                 >
                   <div className="border-2 border-black dark:border-white p-6 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] transition-all h-full">
+                    {/* Project Image */}
+                    <div className="mb-6">
+                      {relatedProject.imageUrl ? (
+                        <img
+                          src={relatedProject.imageUrl}
+                          alt={relatedProject.title}
+                          className="w-full aspect-[16/9] object-cover border-2 border-black dark:border-white"
+                        />
+                      ) : (
+                        <div className="w-full aspect-[16/9] border-2 border-black dark:border-white bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                          <Code
+                            size={64}
+                            className="text-gray-400 dark:text-gray-600"
+                          />
+                        </div>
+                      )}
+                    </div>
+
                     <h3 className="text-xl font-black mb-2 group-hover:underline">
                       {relatedProject.title}
                     </h3>

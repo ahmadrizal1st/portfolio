@@ -1,14 +1,9 @@
 import { motion } from "motion/react";
 import { Code, ArrowRight, Star } from "lucide-react";
 import { projects } from "../lib/data";
-import { PageType } from "../lib/types";
 import { useNavigate } from "react-router-dom";
 
-interface ProjectPageProps {
-  onNavigate: (page: PageType, projectId?: string) => void;
-}
-
-export function ProjectPage({ onNavigate }: ProjectPageProps) {
+export function ProjectPage() {
   const featuredProjects = projects.filter((p) => p.featured);
   const otherProjects = projects.filter((p) => !p.featured);
   const navigate = useNavigate();
@@ -47,19 +42,26 @@ export function ProjectPage({ onNavigate }: ProjectPageProps) {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: index * 0.1 }}
                   className="group cursor-pointer"
-                  onClick={() => onNavigate("project-detail", project.id)}
+                  onClick={() => navigate(`/project/${project.id}`)}
                 >
                   <div className="border-2 border-black dark:border-white p-8 bg-gray-100 dark:bg-gray-800 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[12px_12px_0px_0px_rgba(255,255,255,1)] transition-all h-full">
                     {/* Project Image */}
-                    {project.imageUrl && (
-                      <div className="mb-6">
+                    <div className="mb-6">
+                      {project.imageUrl ? (
                         <img
                           src={project.imageUrl}
                           alt={project.title}
                           className="w-full aspect-[16/9] object-cover border-2 border-black dark:border-white"
                         />
-                      </div>
-                    )}
+                      ) : (
+                        <div className="w-full aspect-[16/9] border-2 border-black dark:border-white bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                          <Code
+                            size={48}
+                            className="text-gray-600 dark:text-gray-400"
+                          />
+                        </div>
+                      )}
+                    </div>
 
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex-1">
@@ -115,15 +117,22 @@ export function ProjectPage({ onNavigate }: ProjectPageProps) {
                 >
                   <div className="border-2 border-black dark:border-white p-6 bg-white dark:bg-black hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] transition-all h-full">
                     {/* Project Image */}
-                    {project.imageUrl && (
-                      <div className="mb-4">
+                    <div className="mb-4">
+                      {project.imageUrl ? (
                         <img
                           src={project.imageUrl}
                           alt={project.title}
                           className="w-full aspect-[16/9] object-cover border-2 border-black dark:border-white"
                         />
-                      </div>
-                    )}
+                      ) : (
+                        <div className="w-full aspect-[16/9] border-2 border-black dark:border-white bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                          <Code
+                            size={32}
+                            className="text-gray-600 dark:text-gray-400"
+                          />
+                        </div>
+                      )}
+                    </div>
 
                     <div className="flex items-start justify-between mb-4">
                       <h3 className="text-xl font-black group-hover:underline">

@@ -161,7 +161,6 @@ export const projects: Project[] = [
     featured: true,
     year: "2024",
     order: 4,
-    imageUrl: "/images/cat.jpg",
   },
   {
     id: "proj-003",
@@ -174,7 +173,6 @@ export const projects: Project[] = [
     featured: false,
     year: "2022",
     order: 3,
-    imageUrl: "/images/keeperapp_logo.png",
   },
   {
     id: "proj-003",

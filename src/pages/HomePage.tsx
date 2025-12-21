@@ -8,13 +8,8 @@ import {
   projects,
 } from "../lib/data";
 import { Button } from "../components/Button";
-import { PageType } from "../lib/types";
 
-interface HomePageProps {
-  onNavigate: (page: PageType, projectId?: string) => void;
-}
-
-export function HomePage({ onNavigate }: HomePageProps) {
+export function HomePage() {
   const navigate = useNavigate();
   const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
   const latestExperiences = experiences.slice(0, 2);
@@ -172,7 +167,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
               Certifications
             </h2>
             <button
-              onClick={() => onNavigate("certification")}
+              onClick={() => navigate("/certification")}
               className="flex items-center gap-2 hover:underline"
             >
               View All <ArrowRight size={18} />
