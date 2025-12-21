@@ -19,6 +19,7 @@ import { ContactPage } from "../pages/ContactPage";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import TetrisLoading from "../components/ui/tetris-loader";
+import NotFoundPage from "../components/ui/page-not-found";
 
 function AppContent() {
   const [isLoading, setIsLoading] = useState(false);
@@ -70,7 +71,7 @@ function AppContent() {
     if (path === "/project") return "project";
     if (path.startsWith("/project/")) return "project-detail";
     if (path === "/contact") return "contact";
-    return "home";
+    return "home"; // Default to home for 404
   };
 
   const currentPage = getCurrentPage();
@@ -97,6 +98,7 @@ function AppContent() {
           <Route path="/project" element={<ProjectPage />} />
           <Route path="/project/:id" element={<ProjectDetailPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
       <Footer />

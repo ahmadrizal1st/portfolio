@@ -41,7 +41,7 @@ export function Header({ currentPage }: HeaderProps) {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="sticky top-0 z-40 bg-white dark:bg-black border-b-2 border-black dark:border-white"
+      className="sticky top-0 z-[101] bg-white dark:bg-black border-b-2 border-black dark:border-white"
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
