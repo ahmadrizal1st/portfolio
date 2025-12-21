@@ -28,12 +28,27 @@ export async function sendContactEmail(data: ContactFormData) {
       }),
     });
 
+    const result = await response.json();
+
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      console.error("Resend API error:", result);
+      return { success: false, error: result };
     }
 
-    const result = await response.json();
-    return { success: true, data: result };
+    // Check if the response contains an 'id' (success) or 'error' (failure)
+    if (result.id) {
+      console.log("Email sent successfully with ID:", result.id);
+      return { success: true, data: result };
+    } else if (result.error) {
+      console.error("Resend API returned error in body:", result.error);
+      return { success: false, error: result.error };
+    } else {
+      console.warn("Unexpected Resend API response:", result);
+      return {
+        success: false,
+        error: "Unexpected response from email service",
+      };
+    }
   } catch (error) {
     console.error("Email sending error:", error);
     return { success: false, error };

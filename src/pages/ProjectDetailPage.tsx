@@ -56,16 +56,31 @@ export function ProjectDetailPage({
         }),
       });
 
+      const result = await response.json();
+      console.log("Resend API response:", response.status, result);
+
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        console.error("Resend API error:", result);
+        setSubmitStatus("error");
+        setTimeout(() => setSubmitStatus("idle"), 5000);
+        return;
       }
 
-      const result = await response.json();
-      console.log("Email sent successfully:", result);
-
-      setSubmitStatus("success");
-      reset();
-      setTimeout(() => setSubmitStatus("idle"), 5000);
+      // Check if the response contains an 'id' (success) or 'error' (failure)
+      if (result.id) {
+        console.log("Email sent successfully with ID:", result.id);
+        setSubmitStatus("success");
+        reset();
+        setTimeout(() => setSubmitStatus("idle"), 5000);
+      } else if (result.error) {
+        console.error("Resend API returned error in body:", result.error);
+        setSubmitStatus("error");
+        setTimeout(() => setSubmitStatus("idle"), 5000);
+      } else {
+        console.warn("Unexpected Resend API response:", result);
+        setSubmitStatus("error");
+        setTimeout(() => setSubmitStatus("idle"), 5000);
+      }
     } catch (error) {
       console.error("Error sending email:", error);
       setSubmitStatus("error");
