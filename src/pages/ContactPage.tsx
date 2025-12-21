@@ -5,6 +5,7 @@ import { z } from "zod";
 import { useState } from "react";
 import { personalInfo } from "../lib/data";
 import { Button } from "../components/Button";
+import { sendContactEmail } from "../lib/emailService";
 
 // Zod schema for form validation
 const contactSchema = z.object({
@@ -32,22 +33,19 @@ export function ContactPage() {
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
 
-    // Simulate API call (replace with actual API call when using Supabase)
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+    const result = await sendContactEmail(data);
 
-      console.log("Form Data:", data);
+    if (result.success) {
+      console.log("Email sent successfully:", result.data);
       setSubmitStatus("success");
       reset();
-
-      // Reset status after 5 seconds
-      setTimeout(() => setSubmitStatus("idle"), 5000);
-    } catch (error) {
+    } else {
+      console.error("Failed to send email:", result.error);
       setSubmitStatus("error");
-      setTimeout(() => setSubmitStatus("idle"), 5000);
-    } finally {
-      setIsSubmitting(false);
     }
+
+    setTimeout(() => setSubmitStatus("idle"), 5000);
+    setIsSubmitting(false);
   };
 
   return (
@@ -95,7 +93,7 @@ export function ContactPage() {
                     })}
                     type="text"
                     id="name"
-                    className="w-full px-4 py-3 border-2 border-black dark:border-white focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white bg-white dark:bg-gray-800 text-black dark:text-white"
+                    className="w-full px-4 py-3 border-2 border-black dark:border-white focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white bg-white dark:bg-black text-black dark:text-white"
                     placeholder="Your name"
                   />
                   {errors.name && (
@@ -120,7 +118,7 @@ export function ContactPage() {
                     })}
                     type="email"
                     id="email"
-                    className="w-full px-4 py-3 border-2 border-black dark:border-white focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white bg-white dark:bg-gray-800 text-black dark:text-white"
+                    className="w-full px-4 py-3 border-2 border-black dark:border-white focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white bg-white dark:bg-black text-black dark:text-white"
                     placeholder="your.email@example.com"
                   />
                   {errors.email && (
@@ -145,7 +143,7 @@ export function ContactPage() {
                     })}
                     type="text"
                     id="subject"
-                    className="w-full px-4 py-3 border-2 border-black dark:border-white focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white bg-white dark:bg-gray-800 text-black dark:text-white"
+                    className="w-full px-4 py-3 border-2 border-black dark:border-white focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white bg-white dark:bg-black text-black dark:text-white"
                     placeholder="What's this about?"
                   />
                   {errors.subject && (
@@ -229,7 +227,7 @@ export function ContactPage() {
             className="space-y-8"
           >
             {/* Contact Details */}
-            <div className="border-2 border-black dark:border-white p-8 bg-gray-50 dark:bg-gray-800">
+            <div className="border-2 border-black dark:border-white p-8 bg-gray-50 dark:bg-black">
               <h2 className="text-2xl font-black mb-6">Contact Information</h2>
 
               <div className="space-y-6">
