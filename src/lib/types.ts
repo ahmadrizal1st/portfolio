@@ -10,8 +10,9 @@ export interface Experience {
   description: string;
   achievements: string[];
   skills: string[];
-  type: 'full-time' | 'organization' | 'volunteer';
+  type: "full-time" | "organization" | "volunteer";
   order: number;
+  imageUrl?: string;
 }
 
 export interface Certification {
@@ -24,6 +25,7 @@ export interface Certification {
   description: string;
   skills: string[];
   order: number;
+  imageUrl?: string;
 }
 
 export interface Project {
@@ -53,4 +55,12 @@ export interface PersonalInfo {
   website?: string;
 }
 
-export type PageType = 'splash' | 'home' | 'about' | 'experience' | 'certification' | 'project' | 'project-detail' | 'contact';
+export type PageType =
+  | "splash"
+  | "home"
+  | "about"
+  | "experience"
+  | "certification"
+  | "project"
+  | "project-detail"
+  | "contact";

@@ -1,15 +1,15 @@
-import { motion } from 'motion/react';
-import { Code, ArrowRight, Star } from 'lucide-react';
-import { projects } from '../lib/data';
-import { PageType } from '../lib/types';
+import { motion } from "motion/react";
+import { Code, ArrowRight, Star } from "lucide-react";
+import { projects } from "../lib/data";
+import { PageType } from "../lib/types";
 
 interface ProjectPageProps {
   onNavigate: (page: PageType, projectId?: string) => void;
 }
 
 export function ProjectPage({ onNavigate }: ProjectPageProps) {
-  const featuredProjects = projects.filter(p => p.featured);
-  const otherProjects = projects.filter(p => !p.featured);
+  const featuredProjects = projects.filter((p) => p.featured);
+  const otherProjects = projects.filter((p) => !p.featured);
 
   return (
     <div className="min-h-screen py-16">
@@ -25,7 +25,8 @@ export function ProjectPage({ onNavigate }: ProjectPageProps) {
             Projects
           </h1>
           <p className="text-xl text-gray-700 max-w-3xl">
-            A collection of projects I've worked on, from web applications to developer tools.
+            A collection of projects I've worked on, from web applications to
+            developer tools.
           </p>
         </motion.div>
 
@@ -36,7 +37,7 @@ export function ProjectPage({ onNavigate }: ProjectPageProps) {
               <Star size={24} fill="currentColor" />
               Featured Projects
             </h2>
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-3 gap-8">
               {featuredProjects.map((project, index) => (
                 <motion.div
                   key={project.id}
@@ -44,20 +45,38 @@ export function ProjectPage({ onNavigate }: ProjectPageProps) {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: index * 0.1 }}
                   className="group cursor-pointer"
-                  onClick={() => onNavigate('project-detail', project.id)}
+                  onClick={() => onNavigate("project-detail", project.id)}
                 >
-                  <div className="border-2 border-black p-8 bg-white hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all h-full">
+                  <div className="border-2 border-black p-8 bg-gray-100 hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all h-full">
+                    {/* Project Image */}
+                    {project.imageUrl && (
+                      <div className="mb-6">
+                        <img
+                          src={project.imageUrl}
+                          alt={project.title}
+                          className="w-full aspect-[16/9] object-cover border-2 border-black"
+                        />
+                      </div>
+                    )}
+
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex-1">
                         <h3 className="text-3xl font-black mb-2 group-hover:underline">
                           {project.title}
                         </h3>
-                        <p className="text-sm text-gray-600 mb-4">{project.year} • {project.category}</p>
+                        <p className="text-sm text-gray-600 mb-4">
+                          {project.year} • {project.category}
+                        </p>
                       </div>
-                      <ArrowRight className="group-hover:translate-x-2 transition-transform" size={24} />
+                      <ArrowRight
+                        className="group-hover:translate-x-2 transition-transform"
+                        size={24}
+                      />
                     </div>
 
-                    <p className="text-lg text-gray-700 mb-6">{project.description}</p>
+                    <p className="text-lg text-gray-700 mb-6">
+                      {project.description}
+                    </p>
 
                     <div className="flex flex-wrap gap-2">
                       {project.technologies.map((tech) => (
@@ -86,17 +105,37 @@ export function ProjectPage({ onNavigate }: ProjectPageProps) {
                   key={project.id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: (featuredProjects.length * 0.1) + (index * 0.1) }}
+                  transition={{
+                    delay: featuredProjects.length * 0.1 + index * 0.1,
+                  }}
                   className="group cursor-pointer"
-                  onClick={() => onNavigate('project-detail', project.id)}
+                  onClick={() => onNavigate("project-detail", project.id)}
                 >
                   <div className="border-2 border-black p-6 bg-white hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all h-full">
+                    {/* Project Image */}
+                    {project.imageUrl && (
+                      <div className="mb-4">
+                        <img
+                          src={project.imageUrl}
+                          alt={project.title}
+                          className="w-full aspect-[16/9] object-cover border-2 border-black"
+                        />
+                      </div>
+                    )}
+
                     <div className="flex items-start justify-between mb-4">
-                      <h3 className="text-xl font-black group-hover:underline">{project.title}</h3>
-                      <ArrowRight className="group-hover:translate-x-1 transition-transform flex-shrink-0" size={20} />
+                      <h3 className="text-xl font-black group-hover:underline">
+                        {project.title}
+                      </h3>
+                      <ArrowRight
+                        className="group-hover:translate-x-1 transition-transform flex-shrink-0"
+                        size={20}
+                      />
                     </div>
-                    
-                    <p className="text-sm text-gray-600 mb-3">{project.year} • {project.category}</p>
+
+                    <p className="text-sm text-gray-600 mb-3">
+                      {project.year} • {project.category}
+                    </p>
                     <p className="text-gray-700 mb-4">{project.description}</p>
 
                     <div className="flex flex-wrap gap-2">

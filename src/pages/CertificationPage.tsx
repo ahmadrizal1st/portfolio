@@ -1,6 +1,6 @@
-import { motion } from 'motion/react';
-import { Award, ExternalLink, Calendar } from 'lucide-react';
-import { certifications } from '../lib/data';
+import { motion } from "motion/react";
+import { Award, ExternalLink, Calendar } from "lucide-react";
+import { certifications } from "../lib/data";
 
 export function CertificationPage() {
   return (
@@ -17,7 +17,8 @@ export function CertificationPage() {
             Certifications
           </h1>
           <p className="text-xl text-gray-700 max-w-3xl">
-            Professional certifications and achievements that validate my expertise.
+            Professional certifications and achievements that validate my
+            expertise.
           </p>
         </motion.div>
 
@@ -45,12 +46,26 @@ export function CertificationPage() {
                 <span>{cert.date}</span>
               </div>
 
+              {/* Image */}
+              {cert.imageUrl ? (
+                <img
+                  src={cert.imageUrl}
+                  alt={`${cert.name} certificate`}
+                  className="w-full aspect-[4/3] object-cover border-2 border-black mb-4"
+                />
+              ) : (
+                <div className="w-full aspect-[4/3] bg-gray-100 border-2 border-black mb-4 flex items-center justify-center">
+                  <Award size={48} className="text-gray-400" />
+                </div>
+              )}
+
               <p className="text-gray-700 mb-4">{cert.description}</p>
 
               {/* Credential Info */}
               {cert.credentialId && (
                 <p className="text-sm text-gray-600 mb-2">
-                  <span className="font-bold">Credential ID:</span> {cert.credentialId}
+                  <span className="font-bold">Credential ID:</span>{" "}
+                  {cert.credentialId}
                 </p>
               )}
 
@@ -93,18 +108,20 @@ export function CertificationPage() {
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div>
-              <div className="text-5xl font-black mb-2">{certifications.length}</div>
+              <div className="text-5xl font-black mb-2">
+                {certifications.length}
+              </div>
               <div className="text-gray-700">Total Certifications</div>
             </div>
             <div>
               <div className="text-5xl font-black mb-2">
-                {new Set(certifications.flatMap(c => c.skills)).size}
+                {new Set(certifications.flatMap((c) => c.skills)).size}
               </div>
               <div className="text-gray-700">Verified Skills</div>
             </div>
             <div>
               <div className="text-5xl font-black mb-2">
-                {new Set(certifications.map(c => c.issuer)).size}
+                {new Set(certifications.map((c) => c.issuer)).size}
               </div>
               <div className="text-gray-700">Issuing Organizations</div>
             </div>

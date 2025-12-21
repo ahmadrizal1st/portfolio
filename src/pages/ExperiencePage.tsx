@@ -1,15 +1,18 @@
-import { motion } from 'motion/react';
-import { useState } from 'react';
-import { Briefcase, MapPin, Calendar } from 'lucide-react';
-import { experiences } from '../lib/data';
-import * as Accordion from '@radix-ui/react-accordion';
+import { motion } from "motion/react";
+import { useState } from "react";
+import { Briefcase, MapPin, Calendar } from "lucide-react";
+import { experiences } from "../lib/data";
+import * as Accordion from "@radix-ui/react-accordion";
 
 export function ExperiencePage() {
-  const [filter, setFilter] = useState<'all' | 'full-time' | 'organization' | 'volunteer'>('all');
+  const [filter, setFilter] = useState<
+    "all" | "full-time" | "organization" | "volunteer"
+  >("all");
 
-  const filteredExperiences = filter === 'all' 
-    ? experiences 
-    : experiences.filter(exp => exp.type === filter);
+  const filteredExperiences =
+    filter === "all"
+      ? experiences
+      : experiences.filter((exp) => exp.type === filter);
 
   return (
     <div className="min-h-screen py-16">
@@ -36,19 +39,21 @@ export function ExperiencePage() {
           transition={{ delay: 0.1 }}
           className="flex flex-wrap gap-4 mb-12"
         >
-          {(['all', 'full-time', 'organization', 'volunteer'] as const).map((type) => (
-            <button
-              key={type}
-              onClick={() => setFilter(type)}
-              className={`px-6 py-2 border-2 border-black transition-all ${
-                filter === type
-                  ? 'bg-black text-white'
-                  : 'bg-white text-black hover:bg-gray-100'
-              }`}
-            >
-              {type.charAt(0).toUpperCase() + type.slice(1).replace('-', ' ')}
-            </button>
-          ))}
+          {(["all", "full-time", "organization", "volunteer"] as const).map(
+            (type) => (
+              <button
+                key={type}
+                onClick={() => setFilter(type)}
+                className={`px-6 py-2 border-2 border-black transition-all ${
+                  filter === type
+                    ? "bg-black text-white"
+                    : "bg-white text-black hover:bg-gray-100"
+                }`}
+              >
+                {type.charAt(0).toUpperCase() + type.slice(1).replace("-", " ")}
+              </button>
+            )
+          )}
         </motion.div>
 
         {/* Timeline */}
@@ -64,16 +69,22 @@ export function ExperiencePage() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               className={`relative mb-12 md:mb-16 ${
-                index % 2 === 0 ? 'md:pr-1/2' : 'md:pl-1/2 md:ml-auto'
+                index % 2 === 0 ? "md:pr-1/2" : "md:pl-1/2 md:ml-auto"
               } md:w-1/2`}
             >
               {/* Timeline Dot */}
-              <div className={`absolute top-0 w-4 h-4 bg-black border-4 border-white rounded-full ${
-                index % 2 === 0 ? 'left-0 md:right-0' : 'left-0'
-              } md:transform md:-translate-x-1/2`} />
+              <div
+                className={`absolute top-0 w-4 h-4 bg-black border-4 border-white rounded-full ${
+                  index % 2 === 0 ? "left-0 md:right-0" : "left-0"
+                } md:transform md:-translate-x-1/2`}
+              />
 
               {/* Content Card */}
-              <div className={`ml-8 md:ml-0 ${index % 2 === 0 ? 'md:mr-8' : 'md:ml-8'}`}>
+              <div
+                className={`ml-8 md:ml-0 ${
+                  index % 2 === 0 ? "md:mr-8" : "md:ml-8"
+                }`}
+              >
                 <div className="border-2 border-black p-6 bg-white hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all">
                   {/* Header */}
                   <div className="mb-4">
@@ -82,7 +93,7 @@ export function ExperiencePage() {
                     </span>
                     <h3 className="text-2xl font-black mb-2">{exp.position}</h3>
                     <p className="text-xl text-gray-700 mb-3">{exp.company}</p>
-                    
+
                     <div className="flex flex-col gap-2 text-sm text-gray-600">
                       <div className="flex items-center gap-2">
                         <Calendar size={16} />
@@ -94,6 +105,15 @@ export function ExperiencePage() {
                       </div>
                     </div>
                   </div>
+
+                  {/* Image */}
+                  {exp.imageUrl && (
+                    <img
+                      src={exp.imageUrl}
+                      alt={`${exp.position} at ${exp.company}`}
+                      className="w-full aspect-[16/9] object-cover border-2 border-black mb-4"
+                    />
+                  )}
 
                   {/* Description */}
                   <p className="text-gray-700 mb-4">{exp.description}</p>

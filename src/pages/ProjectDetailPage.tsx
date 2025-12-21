@@ -1,23 +1,26 @@
-import { motion } from 'motion/react';
-import { ArrowLeft, ExternalLink, Github, Calendar } from 'lucide-react';
-import { projects } from '../lib/data';
-import { Button } from '../components/Button';
-import { PageType } from '../lib/types';
+import { motion } from "motion/react";
+import { ArrowLeft, ExternalLink, Github, Calendar } from "lucide-react";
+import { projects } from "../lib/data";
+import { Button } from "../components/Button";
+import { PageType } from "../lib/types";
 
 interface ProjectDetailPageProps {
   projectId: string | null;
   onNavigate: (page: PageType) => void;
 }
 
-export function ProjectDetailPage({ projectId, onNavigate }: ProjectDetailPageProps) {
-  const project = projects.find(p => p.id === projectId);
+export function ProjectDetailPage({
+  projectId,
+  onNavigate,
+}: ProjectDetailPageProps) {
+  const project = projects.find((p) => p.id === projectId);
 
   if (!project) {
     return (
       <div className="min-h-screen py-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl font-black mb-4">Project Not Found</h1>
-          <Button onClick={() => onNavigate('project')}>
+          <Button onClick={() => onNavigate("project")}>
             Back to Projects
           </Button>
         </div>
@@ -32,7 +35,7 @@ export function ProjectDetailPage({ projectId, onNavigate }: ProjectDetailPagePr
         <motion.button
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          onClick={() => onNavigate('project')}
+          onClick={() => onNavigate("project")}
           className="flex items-center gap-2 mb-8 hover:underline"
         >
           <ArrowLeft size={20} />
@@ -47,15 +50,21 @@ export function ProjectDetailPage({ projectId, onNavigate }: ProjectDetailPagePr
           className="mb-12"
         >
           <div className="flex items-center gap-3 mb-4">
-            <span className="bg-black text-white px-3 py-1 text-sm">{project.category}</span>
+            <span className="bg-black text-white px-3 py-1 text-sm">
+              {project.category}
+            </span>
             <div className="flex items-center gap-2 text-gray-600">
               <Calendar size={16} />
               <span>{project.year}</span>
             </div>
           </div>
 
-          <h1 className="text-5xl md:text-6xl font-black mb-6">{project.title}</h1>
-          <p className="text-2xl text-gray-700 max-w-3xl">{project.description}</p>
+          <h1 className="text-5xl md:text-6xl font-black mb-6">
+            {project.title}
+          </h1>
+          <p className="text-2xl text-gray-700 max-w-3xl">
+            {project.description}
+          </p>
         </motion.div>
 
         {/* Main Content */}
@@ -67,6 +76,17 @@ export function ProjectDetailPage({ projectId, onNavigate }: ProjectDetailPagePr
             transition={{ delay: 0.2 }}
             className="lg:col-span-2"
           >
+            {/* Project Image */}
+            {project.imageUrl && (
+              <div className="mb-8">
+                <img
+                  src={project.imageUrl}
+                  alt={project.title}
+                  className="w-full aspect-[16/9] object-cover border-2 border-black"
+                />
+              </div>
+            )}
+
             <div className="border-2 border-black p-8 bg-white">
               <h2 className="text-3xl font-black mb-6">About This Project</h2>
               <p className="text-lg text-gray-700 leading-relaxed whitespace-pre-line">
@@ -145,7 +165,9 @@ export function ProjectDetailPage({ projectId, onNavigate }: ProjectDetailPagePr
                 </div>
                 <div>
                   <div className="text-sm text-gray-600">Status</div>
-                  <div className="font-bold">{project.featured ? 'Featured' : 'Completed'}</div>
+                  <div className="font-bold">
+                    {project.featured ? "Featured" : "Completed"}
+                  </div>
                 </div>
               </div>
             </div>
@@ -162,9 +184,9 @@ export function ProjectDetailPage({ projectId, onNavigate }: ProjectDetailPagePr
           <h2 className="text-3xl font-black mb-8">More Projects</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {projects
-              .filter(p => p.id !== projectId)
+              .filter((p) => p.id !== projectId)
               .slice(0, 3)
-              .map((relatedProject, index) => (
+              .map((relatedProject) => (
                 <div
                   key={relatedProject.id}
                   onClick={() => window.scrollTo(0, 0)}
@@ -174,10 +196,15 @@ export function ProjectDetailPage({ projectId, onNavigate }: ProjectDetailPagePr
                     <h3 className="text-xl font-black mb-2 group-hover:underline">
                       {relatedProject.title}
                     </h3>
-                    <p className="text-gray-700 mb-4">{relatedProject.description}</p>
+                    <p className="text-gray-700 mb-4">
+                      {relatedProject.description}
+                    </p>
                     <div className="flex flex-wrap gap-2">
                       {relatedProject.technologies.slice(0, 3).map((tech) => (
-                        <span key={tech} className="border border-black px-2 py-1 text-xs">
+                        <span
+                          key={tech}
+                          className="border border-black px-2 py-1 text-xs"
+                        >
                           {tech}
                         </span>
                       ))}
