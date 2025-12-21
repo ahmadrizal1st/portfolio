@@ -159,7 +159,7 @@ export function HomePage() {
       </section>
 
       {/* Certifications Spotlight */}
-      <section className="py-16 border-b-2 border-black dark:border-white bg-gray-50 dark:bg-gray-900">
+      <section className="py-16 border-b-2 border-black dark:border-white bg-gray-50 dark:bg-black">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-3xl md:text-4xl font-black flex items-center gap-3">
@@ -182,7 +182,7 @@ export function HomePage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white dark:bg-gray-800 border-2 border-black dark:border-white p-6"
+                className="bg-white dark:bg-black border-2 border-black dark:border-white p-6"
               >
                 {cert.imageUrl ? (
                   <img
@@ -234,13 +234,17 @@ export function HomePage() {
                 onClick={() => navigate(`/project/${project.id}`)}
               >
                 <div className="border-2 border-black dark:border-white p-6 h-full hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] transition-all">
-                  {project.imageUrl && (
-                    <img
-                      src={project.imageUrl}
-                      alt={project.title}
-                      className="w-full h-32 object-cover mb-4 rounded"
-                    />
-                  )}
+                  <div className="w-full aspect-[16/9] mb-4 rounded overflow-hidden bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+                    {project.imageUrl ? (
+                      <img
+                        src={project.imageUrl}
+                        alt={project.title}
+                        className="w-full aspect-[16/9] object-cover"
+                      />
+                    ) : (
+                      <Code size={48} className="text-gray-500" />
+                    )}
+                  </div>
                   <div className="flex items-start justify-between mb-4">
                     <h3 className="font-black text-xl group-hover:underline">
                       {project.title}

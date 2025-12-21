@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { User, Code, Heart, Zap } from "lucide-react";
 import { personalInfo, experiences, certifications } from "../lib/data";
+import { CommitsGrid } from "@/components/ui/commits-grid";
 
 export function AboutPage() {
   const skills = Array.from(
@@ -27,6 +28,11 @@ export function AboutPage() {
             Get to know more about my background, skills, and what drives me as
             a developer.
           </p>
+
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 mt-5">
+            <CommitsGrid text="Ahmad" />
+            <CommitsGrid text="Rizal" />
+          </div>
         </motion.div>
 
         {/* Bio Section */}

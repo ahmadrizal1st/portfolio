@@ -23,18 +23,18 @@ import NotFoundPage from "../components/ui/page-not-found";
 
 function AppContent() {
   const [isLoading, setIsLoading] = useState(false);
-  const [showSplash, setShowSplash] = useState(true);
+  const [showSplash, setShowSplash] = useState(false);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const [_isProgrammaticNavigation, setIsProgrammaticNavigation] =
     useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const initialPath = location.pathname;
 
-  // Check if user has visited before
+  // Show splash if initial path is home
   useEffect(() => {
-    const hasVisited = localStorage.getItem("hasVisited");
-    if (hasVisited) {
-      setShowSplash(false);
+    if (initialPath === "/") {
+      setShowSplash(true);
     }
   }, []);
 
