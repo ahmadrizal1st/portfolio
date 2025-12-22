@@ -16,7 +16,7 @@ export function Button({
   return (
     <button
       className={clsx(
-        "inline-flex items-center justify-center rounded-md transition-all duration-200",
+        "inline-flex items-center justify-center rounded-md transition-all duration-200 hover:scale-105",
         "disabled:opacity-50 disabled:cursor-not-allowed",
         {
           "bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200":

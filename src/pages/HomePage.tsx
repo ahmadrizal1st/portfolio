@@ -6,8 +6,10 @@ import {
   experiences,
   certifications,
   projects,
+  skills,
 } from "../lib/data";
 import { Button } from "../components/Button";
+import { InfiniteSlider } from "@/components/ui/infinite-slider";
 
 export function HomePage() {
   const navigate = useNavigate();
@@ -26,6 +28,19 @@ export function HomePage() {
             transition={{ duration: 0.6 }}
             className="grid md:grid-cols-2 gap-8 items-center max-w-6xl"
           >
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="flex justify-center md:hidden lg:hidden"
+            >
+              <img
+                src="/images/avatar.gif"
+                alt="Avatar"
+                className="w-full rounded-full object-cover"
+              />
+            </motion.div>
+
             <div>
               <motion.h1
                 initial={{ opacity: 0, x: -30 }}
@@ -84,14 +99,27 @@ export function HomePage() {
               <img
                 src="/images/avatar.gif"
                 alt="Avatar"
-                className="w-200 rounded-full object-cover"
+                className="hidden md:block w-full rounded-full object-cover"
               />
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Experience Highlights */}
+      <section className="py-2 md:py-2 border-b-2 border-black dark:border-white">
+        <InfiniteSlider duration={10} durationOnHover={20}>
+          {skills.map((skill) => (
+            <img
+              key={skill.name}
+              src={skill.logoUrl}
+              alt={skill.name}
+              className="h-20 w-20 mb-2 mt-2 grayscale hover:grayscale-0"
+            />
+          ))}
+        </InfiniteSlider>
+      </section>
+
+      {/* Experience */}
       <section className="py-16 border-b-2 border-black dark:border-white">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between mb-8">
@@ -159,7 +187,7 @@ export function HomePage() {
       </section>
 
       {/* Certifications Spotlight */}
-      <section className="py-16 border-b-2 border-black dark:border-white bg-gray-50 dark:bg-gray-900">
+      <section className="py-16 border-b-2 border-black dark:border-white bg-gray-50 dark:bg-black">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-3xl md:text-4xl font-black flex items-center gap-3">
@@ -182,7 +210,7 @@ export function HomePage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white dark:bg-gray-800 border-2 border-black dark:border-white p-6"
+                className="bg-white dark:bg-black border-2 border-black dark:border-white p-6"
               >
                 {cert.imageUrl ? (
                   <img
@@ -234,13 +262,17 @@ export function HomePage() {
                 onClick={() => navigate(`/project/${project.id}`)}
               >
                 <div className="border-2 border-black dark:border-white p-6 h-full hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] transition-all">
-                  {project.imageUrl && (
-                    <img
-                      src={project.imageUrl}
-                      alt={project.title}
-                      className="w-full h-32 object-cover mb-4 rounded"
-                    />
-                  )}
+                  <div className="w-full aspect-[16/9] mb-4 rounded overflow-hidden bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+                    {project.imageUrl ? (
+                      <img
+                        src={project.imageUrl}
+                        alt={project.title}
+                        className="w-full aspect-[16/9] object-cover"
+                      />
+                    ) : (
+                      <Code size={48} className="text-gray-500" />
+                    )}
+                  </div>
                   <div className="flex items-start justify-between mb-4">
                     <h3 className="font-black text-xl group-hover:underline">
                       {project.title}

@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { User, Code, Heart, Zap } from "lucide-react";
 import { personalInfo, experiences, certifications } from "../lib/data";
+import { CommitsGrid } from "@/components/ui/commits-grid";
 
 export function AboutPage() {
   const skills = Array.from(
@@ -27,6 +28,11 @@ export function AboutPage() {
             Get to know more about my background, skills, and what drives me as
             a developer.
           </p>
+
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 mt-5">
+            <CommitsGrid text="Ahmad" />
+            <CommitsGrid text="Rizal" />
+          </div>
         </motion.div>
 
         {/* Bio Section */}
@@ -36,24 +42,59 @@ export function AboutPage() {
           transition={{ delay: 0.1 }}
           className="mb-16"
         >
-          <div className="border-2 border-black dark:border-white p-8 md:p-12 bg-white dark:bg-black">
-            <h2 className="text-4xl font-black mb-6">Hello!</h2>
-            <div className="prose max-w-none">
-              <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-                {personalInfo.bio}
-              </p>
-              <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-                I'm passionate about creating elegant solutions to complex
-                problems. My journey in software development started over{" "}
-                {experiences.length} years ago, and I've had the privilege of
-                working on diverse projects across various industries.
-              </p>
-              <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                When I'm not coding, you can find me contributing to open-source
-                projects, mentoring aspiring developers, or exploring new
-                technologies and frameworks.
-              </p>
+          <div className="flex flex-col md:flex-row gap-8">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="border-2 border-black dark:border-white p-8 md:p-12 bg-white dark:bg-black flex-1 flex justify-center items-center hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] transition-all"
+            >
+              <img
+                src="/images/avatar1.png"
+                alt="Avatar"
+                className="w-100 rounded-full object-cover"
+              />
+            </motion.div>
+            <div className="border-2 border-black dark:border-white p-8 md:p-12 bg-white dark:bg-black flex-1">
+              <h2 className="text-4xl font-black mb-6">Hello!</h2>
+              <div className="prose max-w-none">
+                <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+                  {personalInfo.bio}
+                </p>
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+                  As an Undergraduate Software Engineering student at AKPRIND
+                  University, Indonesia, I'm passionate about crafting impactful
+                  digital solutions through full-stack development, UI/UX, and
+                  graphic design. I focus on creating elegant answers to complex
+                  problems, and my journey in software development spans over{" "}
+                  {experiences.length} years, during which I've had the
+                  privilege of working on diverse projects across various
+                  industries.
+                </p>
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                  When I'm not coding, you can find me contributing to
+                  open-source projects, mentoring aspiring developers, or
+                  exploring new technologies and frameworks to continuously grow
+                  and give back to the tech community.
+                </p>
+              </div>
             </div>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+            <a
+              href="resume/Ahmad_Rizal_Resume.pdf"
+              download="Ahmad_Rizal_Resume.pdf"
+              className="bg-black text-white px-6 py-3 hover:bg-gray-800 transition-colors border-2 border-black dark:border-white hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]"
+            >
+              Download Resume
+            </a>
+            <a
+              href="/contact"
+              className="bg-white dark:bg-black text-black dark:text-white px-6 py-3 border-2 border-black dark:border-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]"
+            >
+              Send Email
+            </a>
           </div>
         </motion.div>
 
@@ -137,7 +178,7 @@ export function AboutPage() {
           viewport={{ once: true }}
           className="border-2 border-black dark:border-white p-8 bg-white dark:bg-black"
         >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center mb-8">
             <div>
               <div className="text-5xl font-black mb-2">
                 {experiences.length}

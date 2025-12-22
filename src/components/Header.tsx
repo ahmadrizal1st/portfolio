@@ -33,7 +33,7 @@ export function Header({ currentPage }: HeaderProps) {
       "project-detail": "/project",
       contact: "/contact",
     };
-    navigate(routeMap[page] || "/");
+    navigate(routeMap[page] || "/", { state: { programmatic: true } });
     setMobileMenuOpen(false);
   };
 
