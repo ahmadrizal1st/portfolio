@@ -6,14 +6,15 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html,
   body {
     @apply bg-background text-foreground;
-    cursor: url("/cursor/cursor.ico") 0 0, auto;
+    cursor: url("/cursor/cursor.ico") 0 0, auto !important;
   }
   a,
   button,
   a:hover,
   button:hover {
-    cursor: url("/cursor/cursor.ico") 0 0, auto;
+    cursor: url("/cursor/cursor.ico") 0 0, auto !important;
   }
 }

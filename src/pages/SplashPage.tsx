@@ -9,11 +9,9 @@ interface SplashPageProps {
 
 export function SplashPage({ onComplete }: SplashPageProps) {
   useEffect(() => {
-    const handleKeyPress = (e: KeyboardEvent) => {
-      if (e.key === "Enter") {
-        localStorage.setItem("hasVisited", "true");
-        onComplete();
-      }
+    const handleKeyPress = () => {
+      localStorage.setItem("hasVisited", "true");
+      onComplete();
     };
 
     window.addEventListener("keydown", handleKeyPress);
@@ -59,6 +57,18 @@ export function SplashPage({ onComplete }: SplashPageProps) {
           </motion.p>
 
           <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="w-6 h-10 border-2 border-red-500/80 rounded-full flex justify-center pt-2 mx-auto mb-12"
+          >
+            <motion.div className="w-1 h-2 bg-red-500/90 rounded-full" />
+          </motion.div>
+
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 0.6 }}
@@ -69,11 +79,8 @@ export function SplashPage({ onComplete }: SplashPageProps) {
               transition={{ duration: 1.5, repeat: Infinity }}
               className="text-lg"
             >
-              Press{" "}
-              <span className="font-bold border-2 border-white px-3 py-1 rounded">
-                ENTER
-              </span>{" "}
-              or <span className="font-bold">CLICK</span> to continue
+              Press <span className="font-bold">any key</span> or{" "}
+              <span className="font-bold">CLICK</span> to continue
             </motion.div>
           </motion.div>
         </motion.div>

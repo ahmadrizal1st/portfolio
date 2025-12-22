@@ -26,6 +26,19 @@ export function HomePage() {
             transition={{ duration: 0.6 }}
             className="grid md:grid-cols-2 gap-8 items-center max-w-6xl"
           >
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="flex justify-center md:hidden lg:hidden"
+            >
+              <img
+                src="/images/avatar.gif"
+                alt="Avatar"
+                className="w-full rounded-full object-cover"
+              />
+            </motion.div>
+
             <div>
               <motion.h1
                 initial={{ opacity: 0, x: -30 }}
@@ -84,14 +97,13 @@ export function HomePage() {
               <img
                 src="/images/avatar.gif"
                 alt="Avatar"
-                className="w-200 rounded-full object-cover"
+                className="hidden md:block w-full rounded-full object-cover"
               />
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Experience Highlights */}
       <section className="py-16 border-b-2 border-black dark:border-white">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between mb-8">

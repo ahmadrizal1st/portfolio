@@ -52,13 +52,15 @@ function AppContent() {
   }, [location.pathname]);
 
   const handleSplashComplete = () => {
+    setShowSplash(false);
     setIsLoading(true);
     setIsProgrammaticNavigation(true);
+
     setTimeout(() => {
-      setShowSplash(false);
+      <TetrisLoading />;
       navigate("/");
       setIsLoading(false);
-    }, 2000);
+    }, 1000);
   };
 
   // Get current page from location
@@ -87,7 +89,10 @@ function AppContent() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white">
+    <div
+      className="min-h-screen bg-white dark:bg-black text-black dark:text-white"
+      style={{ cursor: 'url("/cursor/cursor.ico") 0 0, auto' }}
+    >
       <Header currentPage={currentPage} />
       <main>
         <Routes>
