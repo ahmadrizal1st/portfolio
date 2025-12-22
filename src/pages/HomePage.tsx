@@ -6,8 +6,10 @@ import {
   experiences,
   certifications,
   projects,
+  skills,
 } from "../lib/data";
 import { Button } from "../components/Button";
+import { InfiniteSlider } from "@/components/ui/infinite-slider";
 
 export function HomePage() {
   const navigate = useNavigate();
@@ -104,6 +106,20 @@ export function HomePage() {
         </div>
       </section>
 
+      <section className="py-2 md:py-2 border-b-2 border-black dark:border-white">
+        <InfiniteSlider duration={10} durationOnHover={20}>
+          {skills.map((skill) => (
+            <img
+              key={skill.name}
+              src={skill.logoUrl}
+              alt={skill.name}
+              className="h-20 w-20 mb-2 mt-2 grayscale hover:grayscale-0"
+            />
+          ))}
+        </InfiniteSlider>
+      </section>
+
+      {/* Experience */}
       <section className="py-16 border-b-2 border-black dark:border-white">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between mb-8">
