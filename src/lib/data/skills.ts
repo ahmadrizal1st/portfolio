@@ -100,9 +100,19 @@ export const skills: Skill[] = [
       "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg",
   },
   {
+    name: "Google",
+    logoUrl:
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-plain.svg",
+  },
+  {
     name: "Firebase",
     logoUrl:
       "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
+  },
+  {
+    name: "SQLite",
+    logoUrl:
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-plain.svg",
   },
   {
     name: "Android",

@@ -1,89 +1,58 @@
 import { motion } from "motion/react";
-import { useEffect } from "react";
-import { personalInfo } from "../lib/data";
+import { useEffect, useState } from "react";
 import { SpiralAnimation } from "../components/ui/spiral-animation";
 
 interface SplashPageProps {
   onComplete: () => void;
 }
 
+const welcomes = [
+  "Welcome",
+  "欢迎",
+  "ようこそ",
+  "환영합니다",
+  "Добро пожаловать",
+  "مرحباً",
+  "Selamat Datang",
+];
+
 export function SplashPage({ onComplete }: SplashPageProps) {
+  const [index, setIndex] = useState(0);
+
   useEffect(() => {
-    const handleKeyPress = () => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % welcomes.length);
+    }, 500);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
       localStorage.setItem("hasVisited", "true");
       onComplete();
-    };
-
-    window.addEventListener("keydown", handleKeyPress);
-    return () => window.removeEventListener("keydown", handleKeyPress);
+    }, 3300);
+    return () => clearTimeout(timer);
   }, [onComplete]);
-
-  const handleClick = () => {
-    localStorage.setItem("hasVisited", "true");
-    onComplete();
-  };
 
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 text-white flex items-center justify-center cursor-pointer"
-      onClick={handleClick}
+      className="fixed inset-0 text-white flex items-center justify-center"
     >
       <SpiralAnimation />
       <div className="text-center px-4 relative z-10">
-        <motion.div
-          initial={{ scale: 0.5, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+        <motion.h1
+          key={index}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          transition={{ duration: 0.3 }}
+          className="text-6xl md:text-8xl font-black"
         >
-          <motion.h1
-            className="text-6xl md:text-8xl font-black mb-6"
-            initial={{ y: -50 }}
-            animate={{ y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-          >
-            {personalInfo.name}
-          </motion.h1>
-
-          <motion.p
-            className="text-2xl md:text-3xl mb-12"
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-          >
-            {personalInfo.title}
-          </motion.p>
-
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="w-6 h-10 border-2 border-red-500/80 rounded-full flex justify-center pt-2 mx-auto mb-12"
-          >
-            <motion.div className="w-1 h-2 bg-red-500/90 rounded-full" />
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 0.6 }}
-            className="flex flex-col items-center gap-4"
-          >
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="text-lg"
-            >
-              Press <span className="font-bold">any key</span> or{" "}
-              <span className="font-bold">CLICK</span> to continue
-            </motion.div>
-          </motion.div>
-        </motion.div>
+          {welcomes[index]}
+        </motion.h1>
       </div>
     </motion.div>
   );

@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { motion } from "motion/react";
 import { User, Code, Heart, Zap } from "lucide-react";
-import { personalInfo, experiences, certifications } from "../lib/data";
+import { personalInfo, experiences, certifications } from "@/lib/data";
 import { CommitsGrid } from "@/components/ui/commits-grid";
 
 export function AboutPage() {
+  const [avatarSrc, setAvatarSrc] = useState("/images/avatar/avatar1.png");
+
   const skills = Array.from(
     new Set([
       ...experiences.flatMap((e) => e.skills),
@@ -51,9 +54,12 @@ export function AboutPage() {
               className="border-2 border-black dark:border-white p-8 md:p-12 bg-white dark:bg-black flex-1 flex justify-center items-center hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] transition-all"
             >
               <img
-                src="/images/avatar1.png"
+                src={avatarSrc}
                 alt="Avatar"
                 className="w-100 rounded-full object-cover"
+                style={{ transform: "scaleX(-1)" }}
+                onMouseEnter={() => setAvatarSrc("/images/avatar/avatar.gif")}
+                onMouseLeave={() => setAvatarSrc("/images/avatar/avatar1.png")}
               />
             </motion.div>
             <div className="border-2 border-black dark:border-white p-8 md:p-12 bg-white dark:bg-black flex-1">
