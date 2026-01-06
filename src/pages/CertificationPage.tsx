@@ -1,8 +1,19 @@
 import { motion } from "motion/react";
 import { Award, ExternalLink, Calendar } from "lucide-react";
 import { certifications } from "../lib/data";
+import { useState } from "react";
+import { Certification } from "../lib/types";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "../app/components/ui/dialog";
 
 export function CertificationPage() {
+  const [selectedCert, setSelectedCert] = useState<Certification | null>(null);
+
   return (
     <div className="min-h-screen py-16">
       <div className="container mx-auto px-4">
@@ -30,7 +41,8 @@ export function CertificationPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="border-2 border-border p-6 bg-card hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] transition-all"
+              className="border-2 border-border p-6 bg-card hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] transition-all min-h-[500px] flex flex-col cursor-pointer"
+              onClick={() => setSelectedCert(cert)}
             >
               {/* Icon */}
               <div className="mb-6">
@@ -38,8 +50,16 @@ export function CertificationPage() {
               </div>
 
               {/* Content */}
-              <h3 className="text-2xl font-black mb-3">{cert.name}</h3>
-              <p className="text-lg text-muted-foreground mb-4">
+              <h3
+                className="text-2xl font-black mb-3 line-clamp-1"
+                title={cert.name}
+              >
+                {cert.name}
+              </h3>
+              <p
+                className="text-lg text-muted-foreground mb-4 line-clamp-1"
+                title={cert.issuer}
+              >
                 {cert.issuer}
               </p>
 
@@ -61,7 +81,15 @@ export function CertificationPage() {
                 </div>
               )}
 
-              <p className="text-muted-foreground mb-4">{cert.description}</p>
+              {cert.description && cert.description.trim().length > 0 ? (
+                <p className="text-muted-foreground mb-4 text-justify flex-grow line-clamp-2">
+                  {cert.description}
+                </p>
+              ) : (
+                <p className="text-muted-foreground mb-4 text-justify flex-grow">
+                  No description available.
+                </p>
+              )}
 
               {/* Credential Info */}
               {cert.credentialId && (
@@ -92,6 +120,7 @@ export function CertificationPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-sm hover:underline mt-4 border-t-2 border-border pt-4"
+                  onClick={(e) => e.stopPropagation()}
                 >
                   <ExternalLink size={16} />
                   Verify Credential
@@ -129,6 +158,64 @@ export function CertificationPage() {
             </div>
           </div>
         </motion.div>
+
+        <Dialog
+          open={!!selectedCert}
+          onOpenChange={(open) => !open && setSelectedCert(null)}
+          modal={false}
+        >
+          <DialogContent className="max-w-2xl z-[102] [&>button]:p-3 [&>button>svg]:size-6">
+            {selectedCert && (
+              <>
+                <DialogHeader>
+                  <DialogTitle>{selectedCert.name}</DialogTitle>
+                  <DialogDescription>
+                    {selectedCert.issuer} - {selectedCert.date}
+                  </DialogDescription>
+                </DialogHeader>
+                {selectedCert.imageUrl && (
+                  <img
+                    src={selectedCert.imageUrl}
+                    alt={`${selectedCert.name} certificate`}
+                    className="w-full aspect-[4/3] object-cover border-2 border-border mb-4"
+                  />
+                )}
+                <p className="text-muted-foreground mb-4 text-justify">
+                  {selectedCert.description}
+                </p>
+                <div className="mb-4">
+                  <div className="flex flex-wrap gap-2">
+                    {selectedCert.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="bg-primary text-primary-foreground px-2 py-1 text-sm"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                {selectedCert.credentialId && (
+                  <p className="text-sm text-muted-foreground mb-2">
+                    <span className="font-bold">Credential ID:</span>{" "}
+                    {selectedCert.credentialId}
+                  </p>
+                )}
+                {selectedCert.credentialUrl && (
+                  <a
+                    href={selectedCert.credentialUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm hover:underline"
+                  >
+                    <ExternalLink size={16} />
+                    Verify Credential
+                  </a>
+                )}
+              </>
+            )}
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );

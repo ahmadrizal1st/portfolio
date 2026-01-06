@@ -10,7 +10,13 @@ export interface Experience {
   description: string;
   achievements: string[];
   skills: string[];
-  type: "full-time" | "organization" | "volunteer";
+  type:
+    | "full-time"
+    | "part-time"
+    | "intern"
+    | "organization"
+    | "volunteer"
+    | "freelance";
   order: number;
   imageUrl?: string;
 }

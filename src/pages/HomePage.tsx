@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { ArrowRight, Code, Award, Briefcase } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   personalInfo,
   experiences,
@@ -35,7 +35,7 @@ export function HomePage() {
               className="flex justify-center md:hidden lg:hidden"
             >
               <img
-                src="/images/avatar.gif"
+                src="/images/avatar/avatar.gif"
                 alt="Avatar"
                 className="w-full rounded-full object-cover"
               />
@@ -97,7 +97,7 @@ export function HomePage() {
               className="flex justify-center"
             >
               <img
-                src="/images/avatar.gif"
+                src="/images/avatar/avatar.gif"
                 alt="Avatar"
                 className="hidden md:block w-full rounded-full object-cover"
               />
@@ -135,52 +135,56 @@ export function HomePage() {
             </button>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             {latestExperiences.map((exp, index) => (
-              <motion.div
-                key={exp.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="border-2 border-black dark:border-white p-6 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] transition-all"
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center gap-4">
-                    {exp.imageUrl && (
-                      <img
-                        src={exp.imageUrl}
-                        alt={exp.company}
-                        className="w-20 h-12 object-contain"
-                      />
-                    )}
-                    <div>
-                      <h3 className="font-black text-xl mb-1">
-                        {exp.position}
-                      </h3>
-                      <p className="text-gray-700 dark:text-gray-300">
-                        {exp.company}
-                      </p>
+              <Link to="/experience">
+                <motion.div
+                  key={exp.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="border-2 border-black dark:border-white p-4 md:p-6 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] transition-all"
+                >
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-center gap-4">
+                      {exp.imageUrl && (
+                        <img
+                          src={exp.imageUrl}
+                          alt={exp.company}
+                          className="w-16 h-10 md:w-20 md:h-12 object-contain"
+                        />
+                      )}
+                      <div>
+                        <h3 className="font-black text-lg md:text-xl mb-1">
+                          {exp.position.length > 20
+                            ? exp.position.slice(0, 20) + "..."
+                            : exp.position}
+                        </h3>
+                        <p className="text-gray-700 dark:text-gray-300 mb-2 line-clamp-3 text-sm md:text-base">
+                          {exp.description}
+                        </p>
+                        <p className="text-gray-700 dark:text-gray-300 text-sm md:text-base">
+                          {exp.company}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <span className="bg-black text-white px-3 py-1 text-sm">
-                    {exp.duration.split(" - ")[0]}
-                  </span>
-                </div>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  {exp.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {exp.skills.slice(0, 3).map((skill) => (
-                    <span
-                      key={skill}
-                      className="border border-black dark:border-white px-2 py-1 text-sm"
-                    >
-                      {skill}
+                    <span className="bg-black text-white px-3 py-1 text-xs md:text-sm">
+                      {exp.duration.split(" - ")[0]}
                     </span>
-                  ))}
-                </div>
-              </motion.div>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {exp.skills.slice(0, 3).map((skill) => (
+                      <span
+                        key={skill}
+                        className="border border-black dark:border-white px-2 py-1 text-xs md:text-sm"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              </Link>
             ))}
           </div>
         </div>
@@ -202,7 +206,7 @@ export function HomePage() {
             </button>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
             {topCertifications.map((cert, index) => (
               <motion.div
                 key={cert.id}
@@ -210,22 +214,21 @@ export function HomePage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white dark:bg-black border-2 border-black dark:border-white p-6"
+                className="bg-white dark:bg-black border-2 border-black dark:border-white p-4 md:p-6"
               >
                 {cert.imageUrl ? (
                   <img
                     src={cert.imageUrl}
                     alt={cert.name}
-                    className="w-24 h-16 object-contain mb-4"
+                    className="w-20 h-12 md:w-24 md:h-16 object-contain mb-4"
                   />
                 ) : (
-                  <Award size={32} className="mb-4" />
+                  <Award size={24} className="mb-4 md:w-8 md:h-8" />
                 )}
-                <h3 className="font-black text-lg mb-2">{cert.name}</h3>
-                <p className="text-gray-700 dark:text-gray-300 mb-2">
-                  {cert.issuer}
-                </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <h3 className="font-black text-base md:text-lg mb-2 truncate">
+                  {cert.name} - {cert.issuer}
+                </h3>
+                <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400">
                   {cert.date}
                 </p>
               </motion.div>
@@ -250,7 +253,7 @@ export function HomePage() {
             </button>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
             {featuredProjects.map((project, index) => (
               <motion.div
                 key={project.id}
@@ -261,7 +264,7 @@ export function HomePage() {
                 className="group cursor-pointer"
                 onClick={() => navigate(`/project/${project.id}`)}
               >
-                <div className="border-2 border-black dark:border-white p-6 h-full hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] transition-all">
+                <div className="border-2 border-black dark:border-white p-4 md:p-6 h-full hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] transition-all">
                   <div className="w-full aspect-[16/9] mb-4 rounded overflow-hidden bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
                     {project.imageUrl ? (
                       <img
@@ -270,26 +273,35 @@ export function HomePage() {
                         className="w-full aspect-[16/9] object-cover"
                       />
                     ) : (
-                      <Code size={48} className="text-gray-500" />
+                      <Code
+                        size={36}
+                        className="text-gray-500 md:w-12 md:h-12"
+                      />
                     )}
                   </div>
                   <div className="flex items-start justify-between mb-4">
-                    <h3 className="font-black text-xl group-hover:underline">
-                      {project.title}
-                    </h3>
+                    <div>
+                      <h3 className="font-black text-lg md:text-xl group-hover:underline">
+                        {project.title.length > 25
+                          ? project.title.slice(0, 25) + "..."
+                          : project.title}
+                      </h3>
+                      <p className="text-gray-700 dark:text-gray-300 mb-2 text-sm md:text-base">
+                        {project.description.length > 40
+                          ? project.description.slice(0, 40) + "..."
+                          : project.description}
+                      </p>
+                    </div>
                     <ArrowRight
-                      className="group-hover:translate-x-1 transition-transform"
-                      size={20}
+                      className="group-hover:translate-x-1 transition-transform w-4 h-4 md:w-5 md:h-5"
+                      size={16}
                     />
                   </div>
-                  <p className="text-gray-700 dark:text-gray-300 mb-4">
-                    {project.description}
-                  </p>
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.slice(0, 3).map((tech) => (
                       <span
                         key={tech}
-                        className="bg-black text-white px-2 py-1 text-sm"
+                        className="bg-black text-white px-2 py-1 text-xs md:text-sm"
                       >
                         {tech}
                       </span>

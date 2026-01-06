@@ -51,7 +51,7 @@ export function Header({ currentPage }: HeaderProps) {
             className="hover:opacity-70 transition-opacity"
           >
             <img
-              src="/images/avatar.png"
+              src="/images/avatar/avatar.png"
               alt="Avatar"
               className="w-15 rounded-full object-cover"
               style={{ transform: "scaleX(-1)" }}

@@ -1,4 +1,4 @@
-import { PersonalInfo } from "./types";
+import { PersonalInfo } from "../types";
 
 export const personalInfo: PersonalInfo = {
   name: "Ahmad Rizal",
