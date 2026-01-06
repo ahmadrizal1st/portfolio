@@ -23,7 +23,11 @@ export const certifications: Certification[] = [
       "https://drive.google.com/file/d/1bEJYR4nAQLBLF0smhp5WolSIehFElayK/view?usp=drivesdk",
     description:
       "Awarded for active participation in the PPK Ormawa 2024 program. Recognizes contributions to community empowerment, organizational development, and innovative projects for sustainable growth.",
-    skills: ["Leadership", "Project Management", "Community Engagement"],
+    skills: [
+      "Project Management",
+      "Community Engagement",
+      "Contect Management",
+    ],
     order: 2,
   },
   {
@@ -36,7 +40,7 @@ export const certifications: Certification[] = [
       "https://drive.google.com/file/d/14nOzB8nd95NPwRIBdJn8R0arXJCeMerK/view?usp=drivesdk",
     description:
       "Awarded for obtaining grant funding for PPK ORMAWA 2024. Acknowledges contributions to innovative project proposals for community empowerment and organizational development.",
-    skills: ["Grant Writing", "Project Proposal", "Organizational Development"],
+    skills: ["Project Proposal", "Organizational Development"],
     order: 3,
   },
   {
