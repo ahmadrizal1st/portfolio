@@ -1,7 +1,7 @@
 import { Project } from "../types";
 
 export const projects: Project[] = [
-  // Pinned projects
+  // Featured projects
   {
     id: "proj-001",
     featured: true,
@@ -40,7 +40,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/ahmadrizal1st/keeper-app",
   },
   {
-    id: "proj-007",
+    id: "proj-003",
     featured: true,
     title: "TrimUrl",
     description: "",
@@ -49,7 +49,7 @@ export const projects: Project[] = [
     technologies: ["react", "typescript", "vite", "go", "redis", "postgres"],
     category: "Website Application",
     year: "2025",
-    order: 7,
+    order: 3,
     imageUrl: "/images/projects/trimurl.png",
     githubUrl: "https://github.com/ahmadrizal1st/trimurl",
   },
@@ -60,8 +60,9 @@ export const projects: Project[] = [
     featured: false,
     title: "Cengkrem",
     description:
-      "website information system for cengkrem.id home, article, product, gallery, and contact",
-    longDescription: "",
+      "Official website for Cengkrem - an information system featuring articles, product showcase, gallery, and contact functionality",
+    longDescription:
+      "Official website for Cengkrem - a comprehensive information system built with WordPress. The platform provides a complete online presence with features including an engaging home page, dynamic article/blog section for content publishing, product showcase for displaying offerings, an interactive image gallery, and a fully functional contact page. Built with WordPress CMS for easy content management and powered by PHP.",
     technologies: ["wordpress", "cms", "php"],
     category: "Website Application",
     year: "2023",
@@ -70,20 +71,22 @@ export const projects: Project[] = [
     githubUrl: "https://cengkrem.id",
   },
   {
-    id: "proj-004",
+    id: "proj-005",
     featured: false,
     title: "Wijaya Kusuma Craft",
-    description: "website finance dashboard for wijaya kusuma craft",
-    longDescription: "",
+    description:
+      "Website finance dashboard for Wijaya Kusuma Craft - managing transactions, reports, and financial tracking",
+    longDescription:
+      "A website finance dashboard application built for Wijaya Kusuma Craft to streamline their financial management operations. The system provides comprehensive tools for tracking transactions, generating financial reports, and monitoring business performance. Built using PHP with MVC architecture, MySQL for data storage, and JavaScript for interactive features, this application helps the business maintain accurate financial records and make informed decisions.",
     technologies: ["mysql", "mvc", "php", "javascript"],
-    category: "Desktop Application",
+    category: "Website Application",
     year: "2025",
-    order: 4,
+    order: 5,
     imageUrl: "/images/projects/wijaya-kusuma-craft.jpeg",
     githubUrl: "https://github.com/ahmadrizal1st/wkc-finance-dashboard",
   },
   {
-    id: "proj-004",
+    id: "proj-006",
     featured: false,
     title: "Cadira Rental",
     description:
@@ -93,12 +96,12 @@ export const projects: Project[] = [
     technologies: ["mysql", "mvc", "javafx", "swing"],
     category: "Desktop Application",
     year: "2025",
-    order: 4,
+    order: 6,
     imageUrl: "/images/projects/cardira-rental.png",
     githubUrl: "https://github.com/ahmadrizal1st/cadira-rental",
   },
   {
-    id: "proj-005",
+    id: "proj-007",
     featured: false,
     title: "Aquafin",
     description:
@@ -108,12 +111,12 @@ export const projects: Project[] = [
     technologies: ["laravel", "mysql", "filament", "docker"],
     category: "Website Application",
     year: "2025",
-    order: 5,
+    order: 7,
     imageUrl: "/images/projects/aquafin.png",
     githubUrl: "https://github.com/ahmadrizal1st/aquafin",
   },
   {
-    id: "proj-006",
+    id: "proj-008",
     featured: false,
     title: "Tun8n",
     description:
@@ -123,12 +126,12 @@ export const projects: Project[] = [
     technologies: ["n8n", "docker", "ngrok"],
     category: "Website Application",
     year: "2025",
-    order: 6,
+    order: 8,
     imageUrl: "/images/projects/tun8n.png",
     githubUrl: "https://github.com/ahmadrizal1st/tun8n",
   },
   {
-    id: "proj-003",
+    id: "proj-009",
     featured: false,
     title: "URL Shortener",
     description:
@@ -138,7 +141,7 @@ export const projects: Project[] = [
     technologies: ["golang", "postgres", "redis"],
     category: "API",
     year: "2025",
-    order: 3,
+    order: 9,
     imageUrl: "/images/projects/url-shortener.png",
     githubUrl: "https://github.com/ahmadrizal1st/url-shortener",
   },
