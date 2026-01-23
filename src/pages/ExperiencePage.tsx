@@ -106,7 +106,13 @@ export function ExperiencePage() {
                   }`}
                 >
                   {/* Timeline Dot */}
-                  <div className="absolute top-0 w-3 h-3 md:w-4 md:h-4 bg-primary border-2 md:border-4 border-background rounded-full left-4 md:left-1/2 transform -translate-x-1/2" />
+                  <div
+                    className={`absolute top-0 w-3 h-3 md:w-4 md:h-4 bg-primary border-2 md:border-4 border-background rounded-full left-4 ${
+                      index % 2 === 0
+                        ? "md:right-0 md:left-auto md:translate-x-1/2"
+                        : "md:left-0 md:-translate-x-1/2"
+                    }`}
+                  />
 
                   {/* Content Card */}
                   <div
