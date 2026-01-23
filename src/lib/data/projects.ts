@@ -42,16 +42,17 @@ export const projects: Project[] = [
   {
     id: "proj-003",
     featured: true,
-    title: "TrimUrl",
-    description: "",
+    title: "Cadira Rental",
+    description:
+      "Simple Car Rental Management System in Java with MVC architecture",
     longDescription:
-      "A full-stack URL shortener application consisting of a Go backend API and a React TypeScript frontend. This project allows users to shorten long URLs, manage them with custom short codes, set expiration times, add tags, and track redirects.",
-    technologies: ["react", "typescript", "vite", "go", "redis", "postgres"],
-    category: "Website Application",
+      "This is a simple Car Rental Management System developed in Java using Swing for the GUI, MySQL for the database, and following the Model-View-Controller (MVC) architectural pattern.",
+    technologies: ["mysql", "mvc", "javafx", "swing"],
+    category: "Desktop Application",
     year: "2025",
     order: 3,
-    imageUrl: "/images/projects/trimurl.png",
-    githubUrl: "https://github.com/ahmadrizal1st/trimurl",
+    imageUrl: "/images/projects/cardira-rental.png",
+    githubUrl: "https://github.com/ahmadrizal1st/cadira-rental",
   },
 
   // Other projects
@@ -65,7 +66,7 @@ export const projects: Project[] = [
       "Official website for Cengkrem - a comprehensive information system built with WordPress. The platform provides a complete online presence with features including an engaging home page, dynamic article/blog section for content publishing, product showcase for displaying offerings, an interactive image gallery, and a fully functional contact page. Built with WordPress CMS for easy content management and powered by PHP.",
     technologies: ["wordpress", "cms", "php"],
     category: "Website Application",
-    year: "2023",
+    year: "2024",
     order: 4,
     imageUrl: "/images/projects/cengkrem.jpeg",
     githubUrl: "https://cengkrem.id",
@@ -88,17 +89,16 @@ export const projects: Project[] = [
   {
     id: "proj-006",
     featured: false,
-    title: "Cadira Rental",
-    description:
-      "Simple Car Rental Management System in Java with MVC architecture",
+    title: "TrimUrl",
+    description: "",
     longDescription:
-      "This is a simple Car Rental Management System developed in Java using Swing for the GUI, MySQL for the database, and following the Model-View-Controller (MVC) architectural pattern.",
-    technologies: ["mysql", "mvc", "javafx", "swing"],
-    category: "Desktop Application",
+      "A full-stack URL shortener application consisting of a Go backend API and a React TypeScript frontend. This project allows users to shorten long URLs, manage them with custom short codes, set expiration times, add tags, and track redirects.",
+    technologies: ["react", "typescript", "vite", "go", "redis", "postgres"],
+    category: "Website Application",
     year: "2025",
     order: 6,
-    imageUrl: "/images/projects/cardira-rental.png",
-    githubUrl: "https://github.com/ahmadrizal1st/cadira-rental",
+    imageUrl: "/images/projects/trimurl.png",
+    githubUrl: "https://github.com/ahmadrizal1st/trimurl",
   },
   {
     id: "proj-007",
