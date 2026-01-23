@@ -40,11 +40,6 @@ export const skills: Skill[] = [
       "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
   },
   {
-    name: "GraphQL",
-    logoUrl:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg",
-  },
-  {
     name: "Node.js",
     logoUrl:
       "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
