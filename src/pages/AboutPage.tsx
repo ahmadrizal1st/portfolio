@@ -11,7 +11,7 @@ export function AboutPage() {
     new Set([
       ...experiences.flatMap((e) => e.skills),
       ...certifications.flatMap((c) => c.skills),
-    ])
+    ]),
   );
 
   return (
@@ -73,10 +73,9 @@ export function AboutPage() {
                   University, Indonesia, I'm passionate about crafting impactful
                   digital solutions through full-stack development, UI/UX, and
                   graphic design. I focus on creating elegant answers to complex
-                  problems, and my journey in software development spans over{" "}
-                  {experiences.length} years, during which I've had the
-                  privilege of working on diverse projects across various
-                  industries.
+                  problems, and my journey in software development spans over 3
+                  years, during which I've had the privilege of working on
+                  diverse projects across various industries.
                 </p>
                 <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
                   When I'm not coding, you can find me contributing to
@@ -197,7 +196,7 @@ export function AboutPage() {
               <div className="text-5xl font-black mb-2">
                 {experiences.reduce(
                   (sum, exp) => sum + exp.achievements.length,
-                  0
+                  0,
                 )}
               </div>
               <div className="text-gray-700 dark:text-gray-300">

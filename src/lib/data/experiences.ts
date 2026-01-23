@@ -7,7 +7,7 @@ export const experiences: Experience[] = [
     position: "Laboratory Assistant - Database Management Systems",
     company: "Universitas AKPRIND Indonesia",
     location: "Yogyakarta, Indonesia",
-    imageUrl: "/images/experience/UAI.png",
+    imageUrl: "/images/experience/akprind.png",
     duration: "September 2025 - December 2025",
     description: `Instructed and supervised students in Database Management Systems labs, using PostgreSQL as the primary platform:
 
@@ -35,7 +35,7 @@ export const experiences: Experience[] = [
     position: "Laboratory Assistant - Operating Systems",
     company: "Universitas AKPRIND Indonesia",
     location: "Yogyakarta, Indonesia",
-    imageUrl: "/images/experience/UAI.png",
+    imageUrl: "/images/experience/akprind.png",
     duration: "September 2025 - December 2025",
     description: `Guided students through hands-on lab sessions in Operating Systems, focusing on foundational and modern computing concepts:
 
@@ -59,7 +59,7 @@ export const experiences: Experience[] = [
     position: "Laboratory Assistant - Object-Oriented Programming",
     company: "Universitas AKPRIND Indonesia",
     location: "Yogyakarta, Indonesia",
-    imageUrl: "/images/experience/UAI.png",
+    imageUrl: "/images/experience/akprind.png",
     duration: "September 2025 - December 2025",
     description: `Led practical lab sessions for Object-Oriented Programming with a focus on Java, blending core theory with hands-on application:
 
@@ -121,7 +121,7 @@ Guided students to develop digital literacy, improve their computer proficiency,
     position: "Documentation Design and Publication APRIND SPORT WEEK 2025",
     company: "Universitas AKPRIND Indonesia",
     location: "Yogyakarta, Indonesia",
-    imageUrl: "/images/experience/akprindsportweek.jpg",
+    imageUrl: "/images/experience/akprindsportweek.png",
     duration: "June 2025 - July 2025",
     description: `Documentation Design and Publication for the AKPRIND Sport Week event, featuring 6 sports branches: futsal, chess, table tennis, badminton, volleyball, and e-sports (Mobile Legends), held over 6 days from July 18 to 23, 2025. Full documentation available on Instagram @akprindsportweek.`,
     achievements: [
@@ -143,7 +143,7 @@ Guided students to develop digital literacy, improve their computer proficiency,
     position: "Laboratory Assistant – Structured Programming",
     company: "Universitas AKPRIND Indonesia",
     location: "Yogyakarta, Indonesia",
-    imageUrl: "/images/experience/UAI.png",
+    imageUrl: "/images/experience/akprind.png",
     duration: "March 2025 - June 2025",
     description: `Laboratory Assistant – Structured Programming
 Universitas AKPRIND Indonesia
@@ -176,7 +176,7 @@ Universitas AKPRIND Indonesia
     position: "Laboratory Assistant – Data Structures",
     company: "Universitas AKPRIND Indonesia",
     location: "Yogyakarta, Indonesia",
-    imageUrl: "/images/experience/UAI.png",
+    imageUrl: "/images/experience/akprind.png",
     duration: "March 2025 - June 2025",
     description: `Laboratory Assistant – Data Structures
 Universitas AKPRIND Indonesia
@@ -212,7 +212,7 @@ Universitas AKPRIND Indonesia
     position: "Laboratory Assistant – Algorithm and Basic Programming",
     company: "Universitas AKPRIND Indonesia",
     location: "Yogyakarta, Indonesia",
-    imageUrl: "/images/experience/UAI.png",
+    imageUrl: "/images/experience/akprind.png",
     duration: "September 2024 - December 2024",
     description: `Laboratory Assistant – Algorithm and Basic Programming
 Universitas AKPRIND Indonesia
