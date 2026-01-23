@@ -497,7 +497,7 @@ export function SpiralAnimation() {
   }, [dimensions]);
 
   return (
-    <div className="absolute inset-0 w-full h-full z-0">
+    <div className="absolute inset-0 w-full h-full z-0 bg-black">
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full pointer-events-none"
