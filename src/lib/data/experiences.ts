@@ -277,12 +277,7 @@ Universitas AKPRIND Indonesia
       "Developed innovative projects for the organization",
       "Enhanced community engagement initiatives",
     ],
-    skills: [
-      "Research",
-      "Project Development",
-      "Data Analysis",
-      "Team Collaboration",
-    ],
+    skills: ["Research", "Project Development", "Team Collaboration"],
     type: "organization",
     order: 10,
   },
