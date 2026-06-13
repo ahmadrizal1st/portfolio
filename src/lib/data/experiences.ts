@@ -9,11 +9,11 @@ export const experiences: Experience[] = [
     location: "Yogyakarta, Indonesia",
     imageUrl: "/images/experience/akprind.png",
     duration: "September 2025 - December 2025",
-    description: `Instructed and supervised students in Database Management Systems labs, using PostgreSQL as the primary platform:
+    description: `Designed and delivered curriculum covering Database Management Systems and PostgreSQL for students:
 
-- Database Fundamentals: Guided the installation, configuration, and management of a PostgreSQL server, alongside core SQL commands (DDL, DML).
-- Data Modeling & Implementation: Trained students in Entity-Relationship Diagram (ERD) modeling and its practical implementation into relational database schemas.
-- Advanced Data Querying: Taught writing of complex SQL queries (joins, subqueries, aggregation) and introduced basic query optimization techniques.`,
+- Database Architecture: Guided the installation, configuration, and management of PostgreSQL servers and core SQL operations.
+- Data Modeling: Led hands-on sessions in Entity-Relationship Diagram (ERD) design and normalization into relational schemas.
+- Query Optimization: Trained students in writing complex SQL queries (joins, subqueries) and fundamental performance tuning.`,
     achievements: [
       "Guided the installation, configuration, and management of a PostgreSQL server",
       "Trained students in Entity-Relationship Diagram (ERD) modeling and schema implementation",
@@ -37,12 +37,11 @@ export const experiences: Experience[] = [
     location: "Yogyakarta, Indonesia",
     imageUrl: "/images/experience/akprind.png",
     duration: "September 2025 - December 2025",
-    description: `Guided students through hands-on lab sessions in Operating Systems, focusing on foundational and modern computing concepts:
+    description: `Facilitated technical training in Operating Systems, focusing on modern infrastructure and deployment workflows:
 
-- Virtualization & Linux Fundamentals: Introduced core concepts by setting up Virtual Machines and utilizing Ubuntu Linux, including essential command-line operations.
-- Containerization with Docker: Taught the basics of Docker, covering container creation, management, and command-line usage within Linux containers.
-- Software Collaboration: Instructed on version control using Git and GitHub for basic collaboration in programming projects.
-- Task Automation: Trained students to write simple Bash scripts to automate tasks within the Linux environment.`,
+- Containerization & Virtualization: Instructed students on Docker container lifecycle management and Ubuntu Linux virtualization.
+- CI/CD & Version Control: Taught industry-standard collaboration practices using Git and GitHub for team programming.
+- Task Automation: Developed practical exercises for writing Bash scripts to automate routine Linux environment operations.`,
     achievements: [
       "Introduced virtualization and Linux fundamentals through Virtual Machines and Ubuntu",
       "Taught Docker basics for containerization and management",
@@ -61,13 +60,11 @@ export const experiences: Experience[] = [
     location: "Yogyakarta, Indonesia",
     imageUrl: "/images/experience/akprind.png",
     duration: "September 2025 - December 2025",
-    description: `Led practical lab sessions for Object-Oriented Programming with a focus on Java, blending core theory with hands-on application:
+    description: `Mentored students in Object-Oriented Programming using Java, bridging theoretical concepts with software engineering practices:
 
-- Java & OOP Basics: Instructed on fundamental Java syntax and core OOP concepts: Classes, Objects, Attributes, and Methods.
-- Core OOP Principles: Deep-dived into the four pillars of OOP: Encapsulation (access modifiers), Inheritance, Polymorphism (overloading/overriding), and Abstraction (abstract classes & interfaces).
-- Data Structures & Control Flow: Practiced using basic Java collections (Arrays, ArrayLists) and applying control flow structures (conditionals, loops) in an OOP context.
-- Robust Programming: Covered constructors, method overloading, and basic error handling with try-catch blocks to build reliable applications.
-- Capstone Project: Supervised the development of a console-based application that integrated key OOP concepts to solve a defined problem.`,
+- OOP Architecture: Deep-dived into Encapsulation, Inheritance, Polymorphism, and Abstraction to design modular applications.
+- Robust Code Practices: Emphasized error handling, data structures (Collections), and efficient control flow integration.
+- Capstone Mentorship: Supervised the end-to-end development of console-based applications, guiding students through problem-solving and architectural decisions.`,
     achievements: [
       "Instructed on fundamental Java syntax and core OOP concepts",
       "Deep-dived into the four pillars of OOP: Encapsulation, Inheritance, Polymorphism, and Abstraction",

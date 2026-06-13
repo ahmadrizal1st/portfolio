@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import { PageType } from "../lib/types";
-import { SplashPage } from "../pages/SplashPage";
 import { HomePage } from "../pages/HomePage";
 import { AboutPage } from "../pages/AboutPage";
 import { ExperiencePage } from "../pages/ExperiencePage";
@@ -18,50 +17,10 @@ import { ProjectDetailPage } from "../pages/ProjectDetailPage";
 import { ContactPage } from "../pages/ContactPage";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
-import TetrisLoading from "../components/ui/tetris-loader";
 import NotFoundPage from "../components/ui/page-not-found";
 
 function AppContent() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [showSplash, setShowSplash] = useState(false);
-  const [isFirstLoad, setIsFirstLoad] = useState(true);
-  const [_isProgrammaticNavigation, setIsProgrammaticNavigation] =
-    useState(false);
-  const navigate = useNavigate();
   const location = useLocation();
-  const initialPath = location.pathname;
-
-  // Show splash if initial path is home
-  useEffect(() => {
-    if (initialPath === "/") {
-      setShowSplash(true);
-    }
-  }, []);
-
-  // Handle loading on route changes
-  useEffect(() => {
-    if (!isLoading && !isFirstLoad) {
-      setIsLoading(true);
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 1000);
-    }
-    if (isFirstLoad) {
-      setIsFirstLoad(false);
-    }
-  }, [location.pathname]);
-
-  const handleSplashComplete = () => {
-    setShowSplash(false);
-    setIsLoading(true);
-    setIsProgrammaticNavigation(true);
-
-    setTimeout(() => {
-      <TetrisLoading />;
-      navigate("/");
-      setIsLoading(false);
-    }, 1000);
-  };
 
   // Get current page from location
   const getCurrentPage = (): PageType => {
@@ -77,16 +36,6 @@ function AppContent() {
   };
 
   const currentPage = getCurrentPage();
-
-  // Show splash page
-  if (showSplash) {
-    return <SplashPage onComplete={handleSplashComplete} />;
-  }
-
-  // Show loading state
-  if (isLoading) {
-    return <TetrisLoading />;
-  }
 
   return (
     <div

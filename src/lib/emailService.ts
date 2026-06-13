@@ -15,7 +15,7 @@ export async function sendContactEmail(data: ContactFormData) {
       },
       body: JSON.stringify({
         from: "Portfolio Contact <onboarding@resend.dev>",
-        to: "ahmaddrizalul@gmail.com", // Replace with your actual email
+        to: "ahmadrizal1st@gmail.com", // Replace with your actual email
         subject: data.subject,
         html: `
           <h2>New Contact Form Message</h2>

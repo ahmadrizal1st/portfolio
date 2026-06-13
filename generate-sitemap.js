@@ -12,7 +12,7 @@ const links = [
 
 (async () => {
   const sitemap = new SitemapStream({
-    hostname: "https://zal-portfolio.vercel.app",
+    hostname: "https://ahmadrizal1st.com",
   });
 
   links.forEach((link) => sitemap.write(link));

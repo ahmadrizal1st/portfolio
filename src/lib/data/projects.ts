@@ -7,7 +7,7 @@ export const projects: Project[] = [
     featured: true,
     title: "HUMANIKA Organization Management",
     description:
-      "Official website for the Informatics Student Association at AKPRIND University, featuring organization profile, activities, and member registration.",
+      "Built a full-stack organization platform handling member registrations with Next.js & MongoDB — solving manual administrative workflows.",
     longDescription:
       "Official website of the Informatics Student Association (HUMANIKA) at AKPRIND University of Indonesia. Provides information on the organization's profile, activities, and member registration for the Informatics Study Program student association. Features: Organization Profile, Division Information, Activities, Member Registration, and Activity Gallery.",
     technologies: [
@@ -29,7 +29,7 @@ export const projects: Project[] = [
     featured: true,
     title: "Keeper App",
     description:
-      "Mobile app for secure file storage and management in cloud and local, with offline access using Kotlin and Firebase.",
+      "Developed a mobile file storage app with Firebase and Room — enabling offline-first access and cloud synchronization for seamless file management.",
     longDescription:
       "Keeper App is a mobile application that allows users to securely store, manage, and access files both in the cloud and locally. Built with Kotlin, it utilizes Firebase for user authentication, cloud storage, and real-time synchronization, along with Room Database for fast offline access. Users can upload various file types, organize them into folders, and seamlessly access their data anytime, whether online or offline",
     technologies: ["kotlin", "firebase", "room", "sqlite"],
@@ -44,7 +44,7 @@ export const projects: Project[] = [
     featured: true,
     title: "Cadira Rental",
     description:
-      "Simple Car Rental Management System in Java with MVC architecture",
+      "Created a Car Rental Management System in Java with MVC architecture — streamlining vehicle tracking and transaction processing.",
     longDescription:
       "This is a simple Car Rental Management System developed in Java using Swing for the GUI, MySQL for the database, and following the Model-View-Controller (MVC) architectural pattern.",
     technologies: ["mysql", "mvc", "javafx", "swing"],
@@ -90,7 +90,8 @@ export const projects: Project[] = [
     id: "proj-006",
     featured: false,
     title: "TrimUrl",
-    description: "",
+    description:
+      "Engineered a full-stack URL shortener with a Go backend and React frontend — utilizing Redis caching to deliver fast, trackable redirects.",
     longDescription:
       "A full-stack URL shortener application consisting of a Go backend API and a React TypeScript frontend. This project allows users to shorten long URLs, manage them with custom short codes, set expiration times, add tags, and track redirects.",
     technologies: ["react", "typescript", "vite", "go", "redis", "postgres"],
@@ -105,7 +106,7 @@ export const projects: Project[] = [
     featured: false,
     title: "Aquafin",
     description:
-      "Laravel-based information system for managing aquaculture operations with admin panel and Docker setup.",
+      "Developed an aquaculture management system with Laravel and Docker — streamlining fish farming operations and financial tracking through a centralized admin panel.",
     longDescription:
       "A Laravel-based information system for managing aquaculture (fish farming) operations. The project includes a powerful admin panel for updating cultivation information and tracking financial transactions, all built with the Filament admin toolkit. It is fully dockerized for a streamlined setup and uses MySQL for data persistence.",
     technologies: ["laravel", "mysql", "filament", "docker"],

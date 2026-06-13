@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { ArrowRight, Code, Award, Briefcase } from "lucide-react";
+import { ArrowRight, Code, Award, Briefcase, Github, Linkedin, FileText } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
 import {
   personalInfo,
@@ -26,7 +26,7 @@ export function HomePage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="grid md:grid-cols-2 gap-8 items-center max-w-6xl"
+            className="grid md:grid-cols-2 gap-8 items-center max-w-6xl mx-auto"
           >
             <motion.div
               initial={{ opacity: 0, x: 30 }}
@@ -75,18 +75,53 @@ export function HomePage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.6 }}
-                className="flex flex-wrap gap-4"
+                className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between w-full"
               >
-                <Button onClick={() => navigate("/project")} size="lg">
-                  View My Work
-                </Button>
-                <Button
-                  onClick={() => navigate("/contact")}
-                  variant="outline"
-                  size="lg"
-                >
-                  Get In Touch
-                </Button>
+                <div className="flex flex-wrap gap-4">
+                  <Button onClick={() => navigate("/project")}>
+                    View My Work
+                  </Button>
+                  <Button
+                    onClick={() => navigate("/contact")}
+                    variant="outline"
+                  >
+                    Get In Touch
+                  </Button>
+                </div>
+                
+                <div className="flex gap-4 items-center w-full sm:w-auto sm:ml-auto justify-end">
+                  <a
+                    href="resume/Ahmad_Rizal_Resume.pdf"
+                    download="Ahmad_Rizal_Resume.pdf"
+                    className="flex items-center gap-2 h-[52px] px-6 border-2 border-black dark:border-white bg-transparent hover:bg-black dark:hover:bg-white text-black hover:text-white dark:text-white dark:hover:text-black transition-all duration-200 font-medium rounded-md"
+                    title="Download Resume"
+                  >
+                    <FileText size={18} />
+                    <span className="hidden sm:inline">Resume</span>
+                  </a>
+                  {personalInfo.github && (
+                    <a
+                      href={personalInfo.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center h-[52px] w-[52px] border-2 border-black dark:border-white rounded-full bg-transparent hover:bg-black dark:hover:bg-white text-black hover:text-white dark:text-white dark:hover:text-black transition-all duration-200"
+                      aria-label="GitHub"
+                    >
+                      <Github size={22} />
+                    </a>
+                  )}
+                  {personalInfo.linkedin && (
+                    <a
+                      href={personalInfo.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center h-[52px] w-[52px] border-2 border-black dark:border-white rounded-full bg-transparent hover:bg-black dark:hover:bg-white text-black hover:text-white dark:text-white dark:hover:text-black transition-all duration-200"
+                      aria-label="LinkedIn"
+                    >
+                      <Linkedin size={22} />
+                    </a>
+                  )}
+                </div>
               </motion.div>
             </div>
 
@@ -106,15 +141,19 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="py-2 md:py-2 border-b-2 border-black dark:border-white">
+      <section className="py-2 md:py-2 border-b-2 border-black dark:border-white bg-gray-50 dark:bg-gray-900">
         <InfiniteSlider duration={10} durationOnHover={20}>
           {skills.map((skill) => (
-            <img
-              key={skill.name}
-              src={skill.logoUrl}
-              alt={skill.name}
-              className="h-20 w-20 mb-2 mt-2 grayscale hover:grayscale-0"
-            />
+            <div key={skill.name} className="flex flex-col items-center justify-center mx-4 group">
+              <img
+                src={skill.logoUrl}
+                alt={skill.name}
+                className="h-16 w-16 mb-2 mt-2 grayscale group-hover:grayscale-0 transition-all duration-300"
+              />
+              <span className="text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                {skill.name}
+              </span>
+            </div>
           ))}
         </InfiniteSlider>
       </section>
@@ -323,11 +362,10 @@ export function HomePage() {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl md:text-5xl font-black mb-6">
-              Let's Work Together
+              Open for Software Engineer Opportunities
             </h2>
             <p className="text-xl mb-8 max-w-2xl mx-auto">
-              Have a project in mind? I'm always open to discussing new
-              opportunities and creative ideas.
+              Currently seeking full-time roles at innovative tech companies. I'm always open to discussing new opportunities and creative ideas.
             </p>
             <Button
               onClick={() => navigate("/contact")}

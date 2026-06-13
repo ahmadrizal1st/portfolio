@@ -45,7 +45,7 @@ export function ProjectDetailPage() {
         },
         body: JSON.stringify({
           from: "Portfolio Feedback <onboarding@resend.dev>",
-          to: "ahmaddrizalul@gmail.com", // Replace with your actual email
+          to: "ahmadrizal1st@gmail.com", // Replace with your actual email
           subject: modifiedData.subject,
           html: `
             <h2>New Feedback from Portfolio</h2>

@@ -114,4 +114,14 @@ export const skills: Skill[] = [
     logoUrl:
       "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-plain.svg",
   },
+  {
+    name: "Go",
+    logoUrl:
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg",
+  },
+  {
+    name: "Redis",
+    logoUrl:
+      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg",
+  },
 ];
