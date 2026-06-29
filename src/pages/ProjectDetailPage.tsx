@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ReactMarkdown from "react-markdown";
 import { useParams, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { motion } from "motion/react";
@@ -169,9 +170,18 @@ export function ProjectDetailPage() {
 
             <div className="border-2 border-black dark:border-white p-8 bg-white dark:bg-black">
               <h2 className="text-3xl font-black mb-6">About This Project</h2>
-              <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-line">
-                {project.longDescription}
-              </p>
+              <div className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                <ReactMarkdown 
+                  components={{
+                    p: ({node, ...props}) => <p className="mb-4" {...props} />,
+                    strong: ({node, ...props}) => <strong className="font-bold text-black dark:text-white" {...props} />,
+                    ul: ({node, ...props}) => <ul className="list-disc pl-5 mb-4 space-y-2" {...props} />,
+                    li: ({node, ...props}) => <li {...props} />
+                  }}
+                >
+                  {project.longDescription}
+                </ReactMarkdown>
+              </div>
 
               {/* Technologies Used */}
               <div className="mt-8 pt-8 border-t-2 border-black dark:border-white">

@@ -2,7 +2,7 @@ import { Certification } from "../types";
 
 export const certifications: Certification[] = [
   {
-    id: "cert-001",
+    id: "f05bc162-6532-488e-978f-0f73f5c7b128",
     name: "Belajar Dasar AI",
     issuer: "Dicoding Indonesia",
     date: "2025",
@@ -14,7 +14,7 @@ export const certifications: Certification[] = [
     order: 1,
   },
   {
-    id: "cert-002",
+    id: "d467c5e2-b86e-4f29-ae92-442d3d375980",
     name: "Certificate of Achievement – Student Organization Capacity Strengthening Program (PPK Ormawa) 2024",
     issuer: "Pusat Layanan Pembiayaan Pendidikan Kemendikbud Ristek",
     date: "2024",
@@ -31,7 +31,7 @@ export const certifications: Certification[] = [
     order: 2,
   },
   {
-    id: "cert-003",
+    id: "da0c0fe1-b27b-4111-ac3e-b0c8128a7240",
     name: "Certificate of Achievement – PPK ORMAWA Grant Recipient 2024",
     issuer: "Universitas AKPRIND Indonesia",
     date: "2024",
@@ -44,7 +44,7 @@ export const certifications: Certification[] = [
     order: 3,
   },
   {
-    id: "cert-004",
+    id: "b5704e74-80e3-4f50-99ea-056078113cf9",
     name: "CSS Introduction",
     issuer: "My Skill",
     date: "2024",

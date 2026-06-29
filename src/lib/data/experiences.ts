@@ -2,7 +2,7 @@ import { Experience } from "../types";
 
 export const experiences: Experience[] = [
   {
-    id: "exp-001",
+    id: "1b9907ce-98fe-4566-a0ab-91f009c29d97",
     year: "2024",
     position: "Laboratory Assistant - Database Management Systems",
     company: "Universitas AKPRIND Indonesia",
@@ -30,7 +30,7 @@ export const experiences: Experience[] = [
     order: 1,
   },
   {
-    id: "exp-002",
+    id: "b6adb68b-40d7-4ca0-8678-d35c61d601df",
     year: "2024",
     position: "Laboratory Assistant - Operating Systems",
     company: "Universitas AKPRIND Indonesia",
@@ -53,7 +53,7 @@ export const experiences: Experience[] = [
     order: 2,
   },
   {
-    id: "exp-003",
+    id: "fb70ed35-7517-44b6-8ce2-d61ccf380cb4",
     year: "2024",
     position: "Laboratory Assistant - Object-Oriented Programming",
     company: "Universitas AKPRIND Indonesia",
@@ -76,7 +76,7 @@ export const experiences: Experience[] = [
     order: 3,
   },
   {
-    id: "exp-004",
+    id: "a1e0e7c4-6720-44ef-88f0-6571c3bd1cb4",
     year: "2025",
     position: "Extracurricular ICT Teacher",
     company: "Pondok Pesantren Taruna Al-Qur’an",
@@ -113,7 +113,7 @@ Guided students to develop digital literacy, improve their computer proficiency,
     order: 4,
   },
   {
-    id: "exp-005",
+    id: "c827b135-420c-4603-b46e-4269af4c3f43",
     year: "2025",
     position: "Documentation Design and Publication APRIND SPORT WEEK 2025",
     company: "Universitas AKPRIND Indonesia",
@@ -135,7 +135,7 @@ Guided students to develop digital literacy, improve their computer proficiency,
     order: 5,
   },
   {
-    id: "exp-006",
+    id: "a72d6cd0-2382-45ad-89a8-3f4db40cd01e",
     year: "2024",
     position: "Laboratory Assistant – Structured Programming",
     company: "Universitas AKPRIND Indonesia",
@@ -168,7 +168,7 @@ Universitas AKPRIND Indonesia
     order: 6,
   },
   {
-    id: "exp-007",
+    id: "c36bcd6f-4948-473f-aa30-17ebd383af96",
     year: "2024",
     position: "Laboratory Assistant – Data Structures",
     company: "Universitas AKPRIND Indonesia",
@@ -204,7 +204,7 @@ Universitas AKPRIND Indonesia
     order: 7,
   },
   {
-    id: "exp-008",
+    id: "8b9f3302-3e0e-4f42-84bf-2886d0ebd66d",
     year: "2024",
     position: "Laboratory Assistant – Algorithm and Basic Programming",
     company: "Universitas AKPRIND Indonesia",
@@ -237,7 +237,7 @@ Universitas AKPRIND Indonesia
     order: 8,
   },
   {
-    id: "exp-009",
+    id: "38e8608f-1222-4af0-b1ed-bc5ae5608e2b",
     year: "2024",
     position: "Secretary",
     company: "HUMANIKA | Universitas AKPRIND Indonesia",
@@ -261,7 +261,7 @@ Universitas AKPRIND Indonesia
     order: 9,
   },
   {
-    id: "exp-010",
+    id: "312f3447-a1a4-4ea6-ae03-096865ac4536",
     year: "2023",
     position: "Research and Development",
     company: "HUMANIKA | Universitas AKPRIND Indonesia",
@@ -279,7 +279,7 @@ Universitas AKPRIND Indonesia
     order: 10,
   },
   {
-    id: "exp-011",
+    id: "a8b9460d-f336-45d1-b4cb-b4db05180e79",
     year: "2023",
     position:
       "Documentation Design and Publication PPK ORMAWA HUMANIKA | Universitas AKPRIND Indonesia",
