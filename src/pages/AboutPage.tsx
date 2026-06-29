@@ -69,19 +69,10 @@ export function AboutPage() {
                   {personalInfo.bio}
                 </p>
                 <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-                  As an Undergraduate Software Engineering student at AKPRIND
-                  University, Indonesia, I'm passionate about crafting impactful
-                  digital solutions through full-stack development, UI/UX, and
-                  graphic design. I focus on creating elegant answers to complex
-                  problems, and my journey in software development spans over 3
-                  years, during which I've had the privilege of working on
-                  diverse projects across various industries.
+                  As a Software Engineer with a strong foundation in Informatics, I focus on crafting scalable backend systems and robust web applications. My practical experience includes developing complex enterprise solutions, such as Hospital Information Systems (SIMRS) and Human Resource Information Systems (HRIS). I specialize in leveraging modern frameworks like Laravel, integrating REST APIs, and managing multi-database architectures to solve real-world technical challenges.
                 </p>
                 <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                  When I'm not coding, you can find me contributing to
-                  open-source projects, mentoring aspiring developers, or
-                  exploring new technologies and frameworks to continuously grow
-                  and give back to the tech community.
+                  Beyond software development, I am deeply passionate about knowledge sharing and academic research. Having mentored peers in programming fundamentals and published findings in peer-reviewed journals, I believe in continuous learning and giving back to the community. I am always eager to embrace new technologies and collaborate on impactful projects that drive innovation.
                 </p>
               </div>
             </div>
